@@ -1,4 +1,4 @@
-package ph.com.sheen.jetpackcomposemultimodule.ui.theme
+package ph.com.sheen.designsystem
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

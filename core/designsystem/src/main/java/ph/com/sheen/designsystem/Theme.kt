@@ -1,4 +1,4 @@
-package ph.com.sheen.jetpackcomposemultimodule.ui.theme
+package ph.com.sheen.designsystem
 
 import android.app.Activity
 import android.os.Build

@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Jetpack Compose Multi Module"
 include(":app")
+include(":core")
+include(":core:designsystem")
