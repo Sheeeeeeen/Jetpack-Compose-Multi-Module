@@ -28,6 +28,8 @@ ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version = "2.7.5" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.7.5" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
@@ -35,4 +37,4 @@ org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.re
 com-android-library = { id = "com.android.library", version.ref = "agp" }
 
 [bundles]
-
+navigation = [ 'androidx-navigation-common-ktx', 'androidx-navigation-compose' ]
