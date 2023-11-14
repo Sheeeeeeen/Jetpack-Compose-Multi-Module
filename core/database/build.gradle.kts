@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "ph.com.sheen.network"
+    namespace = "ph.com.sheen.database"
     compileSdk = 34
 
     defaultConfig {
