@@ -53,6 +53,7 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":core:designsystem")))
+    implementation(project(mapOf("path" to ":feature:login")))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
