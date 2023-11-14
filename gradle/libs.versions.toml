@@ -30,6 +30,7 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version = "2.7.5" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.7.5" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version = "2.7.5" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
