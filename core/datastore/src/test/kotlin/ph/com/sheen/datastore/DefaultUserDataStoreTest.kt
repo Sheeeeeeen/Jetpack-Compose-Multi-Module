@@ -9,7 +9,7 @@ class DefaultUserDataStoreTest {
 
     val temporaryDatastore: MutableMap<String, Any> = mutableMapOf()
 
-    lateinit var userDataStore: UserDataStore
+    private lateinit var userDataStore: UserDataStore
 
     @Before
     fun setup() {
