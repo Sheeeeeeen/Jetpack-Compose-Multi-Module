@@ -10,20 +10,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ph.com.sheen.designsystem.JetpackComposeMultiModuleTheme
+import ph.com.sheen.designsystem.theme.ui.JetpackComposeMultiModuleTheme
+import ph.com.sheen.login.LoginScreenRoute
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             JetpackComposeMultiModuleTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+//                // A surface container using the 'background' color from the theme
+//                Surface(
+//                    modifier = Modifier.fillMaxSize(),
+//                    color = MaterialTheme.colorScheme.background
+//                ) {
+//                    Greeting("Android")
+//                }
+                LoginScreenRoute()
             }
         }
     }
@@ -40,6 +42,14 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
+    JetpackComposeMultiModuleTheme {
+        Greeting("Android")
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview2() {
     JetpackComposeMultiModuleTheme {
         Greeting("Android")
     }
