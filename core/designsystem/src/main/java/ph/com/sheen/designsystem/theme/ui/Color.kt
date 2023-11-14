@@ -1,4 +1,4 @@
-package ph.com.sheen.designsystem
+package ph.com.sheen.designsystem.theme.ui
 
 import androidx.compose.ui.graphics.Color
 

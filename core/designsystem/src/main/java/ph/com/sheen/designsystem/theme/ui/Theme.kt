@@ -1,9 +1,10 @@
-package ph.com.sheen.designsystem
+package ph.com.sheen.designsystem.theme.ui
 
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -67,4 +68,13 @@ fun JetpackComposeMultiModuleTheme(
         typography = Typography,
         content = content
     )
+}
+
+@Composable
+fun AppPreview(content: @Composable () -> Unit){
+    JetpackComposeMultiModuleTheme {
+        Surface(color = MaterialTheme.colorScheme.background){
+            content()
+        }
+    }
 }
