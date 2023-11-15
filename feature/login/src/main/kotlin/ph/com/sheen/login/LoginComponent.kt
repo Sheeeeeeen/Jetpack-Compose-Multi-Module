@@ -1,5 +1,6 @@
 package ph.com.sheen.login
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -64,7 +65,12 @@ class LoginComponent {
     }
 
     @Composable
-    fun LoadingSpinner(modifier: Modifier = Modifier){
-        CircularProgressIndicator(modifier = modifier)
+    fun LoadingSpinner(modifier: Modifier = Modifier) {
+        Box(
+            modifier = Modifier.fillMaxSize()
+                .background(color = MaterialTheme.colorScheme.background.copy(alpha = 0.8f))
+        ) {
+            CircularProgressIndicator(modifier = modifier)
+        }
     }
 }
