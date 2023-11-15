@@ -36,10 +36,8 @@ class DefaultUserDataStoreTest {
     private lateinit var userDataStore: UserDataStore
 
     private val testDataStore: DataStore<Preferences> =
-        PreferenceDataStoreFactory.create(
-            scope = testCoroutineScope,
-            produceFile = { testContext.preferencesDataStoreFile(PREFERENCE_USER_SETTING) }
-        )
+        PreferenceDataStoreFactory.create(scope = testCoroutineScope,
+            produceFile = { testContext.preferencesDataStoreFile(PREFERENCE_USER_SETTING) })
 
     @Before
     fun setup() {
@@ -53,7 +51,7 @@ class DefaultUserDataStoreTest {
     }
 
     @Test
-    fun `test datastore default value of isUserLogin is false`() {
+    fun `test datastore default value of isUserLogin key is false`() {
         testCoroutineScope.runTest {
             userDataStore.getIsUserLogin().test {
                 assertFalse(awaitItem())
@@ -62,7 +60,7 @@ class DefaultUserDataStoreTest {
     }
 
     @Test
-    fun `test datastore value if user set status to true`() {
+    fun `test datastore value with isUserLogin key if user set status to true`() {
         testCoroutineScope.runTest {
             userDataStore.setUserIsLoginStatus(isLogin = true)
             userDataStore.getIsUserLogin().test {
@@ -72,7 +70,7 @@ class DefaultUserDataStoreTest {
     }
 
     @Test
-    fun `test datastore value if user set status to false`() {
+    fun `test datastore value isUserLogin key if user set status to false`() {
         testCoroutineScope.runTest {
             userDataStore.setUserIsLoginStatus(isLogin = false)
             userDataStore.getIsUserLogin().test {
