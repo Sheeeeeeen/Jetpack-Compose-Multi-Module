@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +25,7 @@ class LoginComponent {
 
     @Composable
     fun Container(modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = modifier.fillMaxSize()) {
             content()
         }
     }
@@ -62,4 +63,8 @@ class LoginComponent {
         }
     }
 
+    @Composable
+    fun LoadingSpinner(modifier: Modifier = Modifier){
+        CircularProgressIndicator(modifier = modifier)
+    }
 }

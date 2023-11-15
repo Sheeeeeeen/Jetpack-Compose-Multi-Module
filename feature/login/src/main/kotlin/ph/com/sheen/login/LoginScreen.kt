@@ -1,5 +1,6 @@
 package ph.com.sheen.login
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,6 +21,9 @@ fun LoginScreen(modifier: Modifier = Modifier) {
             WelcomeLabel(modifier = Modifier.align(alignment = Alignment.TopCenter))
             TeachersAppLabel(modifier = Modifier.align(Alignment.Center))
             LoginButton(modifier = Modifier.align(Alignment.BottomCenter).padding(12.dp))
+            AnimatedVisibility(visible = false) {
+                LoadingSpinner(modifier = Modifier.align(alignment = Alignment.Center))
+            }
         }
     }
 }
