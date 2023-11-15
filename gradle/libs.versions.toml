@@ -31,7 +31,13 @@ material = { group = "com.google.android.material", name = "material", version.r
 androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version = "2.7.5" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version = "2.7.5" }
 androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version = "2.7.5" }
-androidx-datastore-android = { group = "androidx.datastore", name = "datastore-android", version = "1.1.0-alpha06" }
+androidx-datastore-android = { group = "androidx.datastore", name = "datastore-preferences", version = "1.1.0-alpha06" }
+kotlinx-coroutines-test-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test-jvm", version = "1.7.3" }
+turbine = {group = "app.cash.turbine", name = "turbine", version = "1.0.0"}
+androidx-monitor = { group = "androidx.test", name = "monitor", version = "1.6.1" }
+androidx-core-ktx = { group = "androidx.test", name = "core-ktx", version = "1.5.0" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version = "1.1.5" }
+robolectric = { group = "org.robolectric", name = "robolectric", version = "4.11.1" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }

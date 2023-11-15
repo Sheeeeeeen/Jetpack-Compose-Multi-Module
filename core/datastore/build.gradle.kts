@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "ph.com.sheen.datastore"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -39,7 +39,18 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.datastore.android)
+
+    implementation(libs.kotlinx.coroutines.test.jvm)
+    implementation(libs.androidx.monitor)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.junit.ktx)
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.espresso.core)
+
+    testImplementation(libs.turbine)
 }
