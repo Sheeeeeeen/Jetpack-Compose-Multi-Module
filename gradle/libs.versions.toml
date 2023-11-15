@@ -1,5 +1,6 @@
 [versions]
 agp = "8.1.1"
+hilt = "2.44"
 org-jetbrains-kotlin-android = "1.8.10"
 core-ktx = "1.9.0"
 junit = "4.13.2"
@@ -38,11 +39,14 @@ androidx-monitor = { group = "androidx.test", name = "monitor", version = "1.6.1
 androidx-core-ktx = { group = "androidx.test", name = "core-ktx", version = "1.5.0" }
 androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version = "1.1.5" }
 robolectric = { group = "org.robolectric", name = "robolectric", version = "4.11.1" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version = "2.48.1" }
+hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version = "2.48.1" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
 com-android-library = { id = "com.android.library", version.ref = "agp" }
+com-google-dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [bundles]
 navigation = [ 'androidx-navigation-common-ktx', 'androidx-navigation-compose' ]
