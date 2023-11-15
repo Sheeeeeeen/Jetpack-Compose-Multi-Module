@@ -71,10 +71,14 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test.jvm)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ui.test.junit4)
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    testImplementation(libs.robolectric)
+    testImplementation(libs.turbine)
 }
