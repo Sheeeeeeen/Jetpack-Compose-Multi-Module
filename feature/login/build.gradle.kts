@@ -47,6 +47,7 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":core:designsystem")))
+    implementation(project(mapOf("path" to ":core:datastore")))
 
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
