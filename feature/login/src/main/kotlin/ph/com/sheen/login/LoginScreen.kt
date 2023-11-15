@@ -3,6 +3,8 @@ package ph.com.sheen.login
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -12,17 +14,18 @@ import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
 fun LoginScreenRoute(viewModel: LoginViewModel = hiltViewModel()) {
-    LoginScreen()
+    val uiState by viewModel.uiState.collectAsState()
+    LoginScreen(uiState = uiState)
 }
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier) {
+fun LoginScreen(uiState: LoginUIState) {
     BuildLoginScreen {
-        Container(modifier = modifier) {
+        Container(modifier = Modifier) {
             WelcomeLabel(modifier = Modifier.align(alignment = Alignment.TopCenter))
             TeachersAppLabel(modifier = Modifier.align(Alignment.Center))
             LoginButton(modifier = Modifier.align(Alignment.BottomCenter).padding(12.dp))
-            AnimatedVisibility(visible = false) {
+            AnimatedVisibility(visible = uiState.isLoading) {
                 LoadingSpinner(modifier = Modifier.align(alignment = Alignment.Center))
             }
         }
@@ -33,6 +36,14 @@ fun LoginScreen(modifier: Modifier = Modifier) {
 @Composable
 private fun LoginScreenPreview() {
     AppPreview {
-        LoginScreen()
+        LoginScreen(uiState = LoginUIState())
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun LoginScreenIsLoadingPreview() {
+    AppPreview {
+        LoginScreen(uiState = LoginUIState(isLoading = true))
     }
 }
