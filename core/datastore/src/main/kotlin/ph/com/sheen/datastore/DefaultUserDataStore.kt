@@ -9,13 +9,12 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-
-const val PREFERENCE_USER_SETTING = "userSettings"
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = PREFERENCE_USER_SETTING)
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = DefaultUserDataStore.PREFERENCE_USER_SETTING)
 
 class DefaultUserDataStore(private val dataStore: DataStore<Preferences>) : UserDataStore {
     companion object {
         val IS_USER_LOGIN_KEY = booleanPreferencesKey("isUserLogin")
+        const val PREFERENCE_USER_SETTING = "userSettings"
     }
 
     override suspend fun setUserIsLoginStatus(isLogin: Boolean) {

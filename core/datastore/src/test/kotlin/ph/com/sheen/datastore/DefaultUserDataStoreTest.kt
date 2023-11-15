@@ -37,7 +37,7 @@ class DefaultUserDataStoreTest {
 
     private val testDataStore: DataStore<Preferences> =
         PreferenceDataStoreFactory.create(scope = testCoroutineScope,
-            produceFile = { testContext.preferencesDataStoreFile(PREFERENCE_USER_SETTING) })
+            produceFile = { testContext.preferencesDataStoreFile(DefaultUserDataStore.PREFERENCE_USER_SETTING) })
 
     @Before
     fun setup() {
