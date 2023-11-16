@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.material3)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.hilt.android)
+    implementation(libs.androidx.core.splashscreen)
     kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
