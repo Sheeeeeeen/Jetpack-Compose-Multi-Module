@@ -6,6 +6,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import ph.com.sheen.login.model.LoginStatus
+import ph.com.sheen.login.model.LoginUIState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,10 +34,8 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         delay(3000)
         setUiStateToNotLoading()
     }
-}
 
-data class LoginUIState(
-    val isLoading: Boolean = false,
-) {
-
+    private fun setUserLoggedInStatus(userLoginStatus: LoginStatus){
+        //
+    }
 }

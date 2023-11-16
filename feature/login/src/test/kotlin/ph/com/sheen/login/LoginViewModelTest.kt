@@ -1,6 +1,5 @@
 package ph.com.sheen.login
 
-import android.util.Log
 import app.cash.turbine.test
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertTrue
@@ -9,13 +8,11 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
+import ph.com.sheen.login.model.LoginStatus
 
 @RunWith(RobolectricTestRunner::class)
 class LoginViewModelTest {
@@ -47,6 +44,16 @@ class LoginViewModelTest {
                 assertTrue(result.isLoading.not())
             }
             viewModel.login()
+        }
+    }
+
+    @Test
+    fun `test Login ui state userloginStatus default value is UserNotLoggedIn`() {
+        runBlocking {
+            viewModel.uiState.test {
+                val result = awaitItem()
+                assertTrue(result.loginStatus == LoginStatus.UserNotLoggedIn)
+            }
         }
     }
 }
