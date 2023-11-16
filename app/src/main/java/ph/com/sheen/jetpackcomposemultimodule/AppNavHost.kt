@@ -23,6 +23,7 @@ fun AppNavHost(
     ) {
         loginGraph(
             navToDashboard = {
+                navController.popBackStack()
                 navController.navigateToDashboardScreen()
             },
             nestedGraphs = { /** add login graph here  **/ }
