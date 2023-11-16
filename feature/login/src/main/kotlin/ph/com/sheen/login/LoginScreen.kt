@@ -16,7 +16,7 @@ import ph.com.sheen.designsystem.theme.ui.AppPreview
 import ph.com.sheen.login.model.LoginUIState
 
 @Composable
-fun LoginScreenRoute(viewModel: LoginViewModel = hiltViewModel()) {
+fun LoginScreenRoute(viewModel: LoginViewModel = hiltViewModel(), navToDashboard: () -> Unit) {
 
     val scope = rememberCoroutineScope()
 

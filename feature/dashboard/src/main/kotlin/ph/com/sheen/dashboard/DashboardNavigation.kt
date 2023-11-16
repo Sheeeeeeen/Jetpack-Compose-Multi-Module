@@ -1,5 +1,6 @@
 package ph.com.sheen.dashboard
 
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 
@@ -11,3 +12,10 @@ fun NavGraphBuilder.dashboardGraph(
         DashboardRoute()
     }
 }
+
+fun NavController.navigateToDashboardScreen(){
+    this.navigate(route = dashboardNavigationRoute){
+        launchSingleTop = true
+    }
+}
+

@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import ph.com.sheen.dashboard.dashboardGraph
+import ph.com.sheen.dashboard.navigateToDashboardScreen
 import ph.com.sheen.login.loginGraph
 import ph.com.sheen.login.loginNavigationRoute
 
@@ -20,7 +21,12 @@ fun AppNavHost(
         startDestination = startDestination,
         modifier = modifier.fillMaxSize(),
     ) {
-        loginGraph(nestedGraphs = { /** add login graph here  **/ })
-        dashboardGraph(nestedGraphs = { /** add login graph here  **/ })
+        loginGraph(
+            navToDashboard = {
+                navController.navigateToDashboardScreen()
+            },
+            nestedGraphs = { /** add login graph here  **/ }
+        )
+        dashboardGraph(nestedGraphs = { /** add dashboard graph here  **/ })
     }
 }
