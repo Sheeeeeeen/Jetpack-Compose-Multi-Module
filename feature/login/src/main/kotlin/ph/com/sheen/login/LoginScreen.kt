@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import ph.com.sheen.designsystem.theme.ui.AppPreview
+import ph.com.sheen.login.model.LoginStatus.Successful.isSuccessful
 import ph.com.sheen.login.model.LoginUIState
 
 @Composable
@@ -23,6 +24,9 @@ fun LoginScreenRoute(viewModel: LoginViewModel = hiltViewModel(), navToDashboard
     val uiState by viewModel.uiState.collectAsState()
 
     LoginScreen(uiState = uiState, onLoginClick = { scope.launch { viewModel.login() } })
+    if (uiState.loginStatus.isSuccessful()) {
+        navToDashboard()
+    }
 }
 
 @Composable

@@ -8,4 +8,8 @@ data class LoginUIState(
 sealed interface LoginStatus {
     object UserNotLoggedIn : LoginStatus
     object Successful : LoginStatus
+
+    fun LoginStatus.isSuccessful(): Boolean {
+        return this == Successful
+    }
 }

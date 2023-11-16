@@ -13,8 +13,8 @@ fun NavGraphBuilder.dashboardGraph(
     }
 }
 
-fun NavController.navigateToDashboardScreen(){
-    this.navigate(route = dashboardNavigationRoute){
+fun NavController.navigateToDashboardScreen() {
+    this.navigate(route = dashboardNavigationRoute) {
         launchSingleTop = true
     }
 }
