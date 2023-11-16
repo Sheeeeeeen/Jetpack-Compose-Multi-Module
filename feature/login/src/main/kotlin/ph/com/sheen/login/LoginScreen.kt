@@ -15,18 +15,18 @@ import ph.com.sheen.designsystem.theme.ui.AppPreview
 @Composable
 fun LoginScreenRoute(viewModel: LoginViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
-    LoginScreen(uiState = uiState)
+    LoginScreen(uiState = uiState, onLoginClick = { viewModel.setUiStateToLoading() })
 }
 
 @Composable
-fun LoginScreen(uiState: LoginUIState) {
+fun LoginScreen(uiState: LoginUIState, onLoginClick: () -> Unit) {
     BuildLoginScreen {
         Container(modifier = Modifier) {
             WelcomeLabel(modifier = Modifier.align(alignment = Alignment.TopCenter))
             TeachersAppLabel(modifier = Modifier.align(Alignment.Center))
             LoginButton(
                 modifier = Modifier.align(Alignment.BottomCenter).padding(12.dp),
-                onClick = {}
+                onClick = onLoginClick
             )
             AnimatedVisibility(visible = uiState.isLoading) {
                 LoadingSpinner(modifier = Modifier.align(alignment = Alignment.Center))
@@ -39,7 +39,7 @@ fun LoginScreen(uiState: LoginUIState) {
 @Composable
 private fun LoginScreenPreview() {
     AppPreview {
-        LoginScreen(uiState = LoginUIState())
+        LoginScreen(uiState = LoginUIState(), onLoginClick = {})
     }
 }
 
@@ -47,6 +47,6 @@ private fun LoginScreenPreview() {
 @Composable
 private fun LoginScreenIsLoadingPreview() {
     AppPreview {
-        LoginScreen(uiState = LoginUIState(isLoading = true))
+        LoginScreen(uiState = LoginUIState(isLoading = true), onLoginClick = {})
     }
 }

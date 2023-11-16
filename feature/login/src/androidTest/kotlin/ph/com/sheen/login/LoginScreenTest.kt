@@ -14,7 +14,7 @@ class LoginScreenTest {
     @Test
     fun test_login_screen_default_state() {
         composeTestRule.setContent {
-            LoginScreen(uiState = LoginUIState())
+            LoginScreen(uiState = LoginUIState(), onLoginClick = {})
         }
         composeTestRule.onNodeWithTag("welcome_label").assertIsDisplayed()
         composeTestRule.onNodeWithTag("teachers_label").assertIsDisplayed()
@@ -24,7 +24,7 @@ class LoginScreenTest {
     @Test
     fun test_login_screen_showing_loading_screen() {
         composeTestRule.setContent {
-            LoginScreen(uiState = LoginUIState(isLoading = true))
+            LoginScreen(uiState = LoginUIState(isLoading = true), onLoginClick = {})
         }
         composeTestRule.onNodeWithTag("welcome_label").assertIsDisplayed()
         composeTestRule.onNodeWithTag("teachers_label").assertIsDisplayed()
