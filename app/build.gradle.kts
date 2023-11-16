@@ -59,6 +59,7 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":core:designsystem")))
+    implementation(project(mapOf("path" to ":core:datastore")))
     implementation(project(mapOf("path" to ":feature:login")))
     implementation(project(mapOf("path" to ":feature:dashboard")))
 
