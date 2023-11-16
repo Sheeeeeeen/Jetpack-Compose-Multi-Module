@@ -1,9 +1,11 @@
 package ph.com.sheen.jetpackcomposemultimodule
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import ph.com.sheen.dashboard.dashboardGraph
 import ph.com.sheen.login.loginGraph
 import ph.com.sheen.login.loginNavigationRoute
 
@@ -11,13 +13,14 @@ import ph.com.sheen.login.loginNavigationRoute
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-    startDestination: String = loginNavigationRoute
-){
+    startDestination: String = loginNavigationRoute,
+) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
-        modifier = modifier,
-    ){
+        modifier = modifier.fillMaxSize(),
+    ) {
         loginGraph(nestedGraphs = { /** add login graph here  **/ })
+        dashboardGraph(nestedGraphs = { /** add login graph here  **/ })
     }
 }
