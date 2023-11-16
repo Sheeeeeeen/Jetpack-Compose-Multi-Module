@@ -70,6 +70,7 @@ class LoginComponent {
         Box(
             modifier = Modifier.fillMaxSize()
                 .background(color = MaterialTheme.colorScheme.background.copy(alpha = 0.8f))
+                .testTag("login_loading")
         ) {
             CircularProgressIndicator(modifier = modifier)
         }
