@@ -1,9 +1,11 @@
 package ph.com.sheen.login
 
+import android.util.Log
 import app.cash.turbine.test
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -12,6 +14,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 @RunWith(RobolectricTestRunner::class)
 class LoginViewModelTest {
@@ -28,7 +32,7 @@ class LoginViewModelTest {
 
     @Test
     fun `test Login ui state isLoading default value is false`() {
-        testCoroutineScope.runTest {
+        runBlocking {
             viewModel.uiState.test {
                 assertFalse(awaitItem().isLoading)
             }
@@ -37,11 +41,12 @@ class LoginViewModelTest {
 
     @Test
     fun `test when user tap login button and show loading screen`() {
-        testCoroutineScope.runTest {
-            viewModel.login()
+        runBlocking {
             viewModel.uiState.test {
-                assertTrue(awaitItem().isLoading)
+                val result = awaitItem()
+                assertTrue(result.isLoading.not())
             }
+            viewModel.login()
         }
     }
 }

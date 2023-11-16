@@ -2,6 +2,7 @@ package ph.com.sheen.login
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -20,8 +21,16 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         }
     }
 
-    fun login() {
+    private fun setUiStateToNotLoading() {
+        _uiState.update {
+            it.copy(isLoading = false)
+        }
+    }
+
+    suspend fun login() {
         setUiStateToLoading()
+        delay(3000)
+        setUiStateToNotLoading()
     }
 }
 
