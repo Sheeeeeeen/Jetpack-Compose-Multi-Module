@@ -39,11 +39,11 @@ class LoginViewModelTest {
     @Test
     fun `test when user tap login button and show loading screen`() {
         runBlocking {
+            viewModel.login()
             viewModel.uiState.test {
                 val result = awaitItem()
                 assertTrue(result.isLoading.not())
             }
-            viewModel.login()
         }
     }
 
@@ -53,6 +53,17 @@ class LoginViewModelTest {
             viewModel.uiState.test {
                 val result = awaitItem()
                 assertTrue(result.loginStatus == LoginStatus.UserNotLoggedIn)
+            }
+        }
+    }
+
+    @Test
+    fun `test Login ui state when the login is successful and LoginStatus is Successful`() {
+        runBlocking {
+            viewModel.login()
+            viewModel.uiState.test {
+                val result = awaitItem()
+                assertTrue(result.loginStatus == LoginStatus.Successful)
             }
         }
     }

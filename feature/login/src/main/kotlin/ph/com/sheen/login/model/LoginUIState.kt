@@ -7,4 +7,5 @@ data class LoginUIState(
 
 sealed interface LoginStatus {
     object UserNotLoggedIn : LoginStatus
+    object Successful : LoginStatus
 }

@@ -33,9 +33,12 @@ class LoginViewModel @Inject constructor() : ViewModel() {
         setUiStateToLoading()
         delay(3000)
         setUiStateToNotLoading()
+        setUserLoggedInStatus(userLoginStatus = LoginStatus.Successful)
     }
 
-    private fun setUserLoggedInStatus(userLoginStatus: LoginStatus){
-        //
+    private fun setUserLoggedInStatus(userLoginStatus: LoginStatus) {
+        _uiState.update {
+            it.copy(loginStatus = userLoginStatus)
+        }
     }
 }
