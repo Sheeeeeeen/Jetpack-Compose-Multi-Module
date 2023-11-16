@@ -28,6 +28,7 @@ fun LoginScreen(uiState: LoginUIState, onLoginClick: () -> Unit) {
                 modifier = Modifier.align(Alignment.BottomCenter).padding(12.dp),
                 onClick = onLoginClick
             )
+            //TODO add smooth animation to show loading screen
             AnimatedVisibility(visible = uiState.isLoading) {
                 LoadingSpinner(modifier = Modifier.align(alignment = Alignment.Center))
             }
