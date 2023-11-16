@@ -60,6 +60,7 @@ dependencies {
 
     implementation(project(mapOf("path" to ":core:designsystem")))
     implementation(project(mapOf("path" to ":feature:login")))
+    implementation(project(mapOf("path" to ":feature:dashboard")))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
