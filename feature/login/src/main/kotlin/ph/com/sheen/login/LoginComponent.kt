@@ -55,11 +55,11 @@ class LoginComponent {
     }
 
     @Composable
-    fun LoginButton(modifier: Modifier = Modifier) {
+    fun LoginButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
         Button(
             modifier = modifier
                 .fillMaxWidth().testTag("login_button"),
-            onClick = {}
+            onClick = onClick
         ) {
             Text(text = "Login")
         }
