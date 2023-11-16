@@ -15,7 +15,7 @@ import ph.com.sheen.designsystem.theme.ui.AppPreview
 @Composable
 fun LoginScreenRoute(viewModel: LoginViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
-    LoginScreen(uiState = uiState, onLoginClick = { viewModel.setUiStateToLoading() })
+    LoginScreen(uiState = uiState, onLoginClick = { viewModel.login() })
 }
 
 @Composable

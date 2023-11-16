@@ -36,9 +36,9 @@ class LoginViewModelTest {
     }
 
     @Test
-    fun `test Login ui state isLoading value is true when loading is on progress`() {
+    fun `test when user tap login button and show loading screen`() {
         testCoroutineScope.runTest {
-            viewModel.setUiStateToLoading()
+            viewModel.login()
             viewModel.uiState.test {
                 assertTrue(awaitItem().isLoading)
             }

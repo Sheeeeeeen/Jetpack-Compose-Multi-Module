@@ -14,10 +14,14 @@ class LoginViewModel @Inject constructor() : ViewModel() {
     val uiState: StateFlow<LoginUIState>
         get() = _uiState
 
-    fun setUiStateToLoading() {
+    private fun setUiStateToLoading() {
         _uiState.update {
             it.copy(isLoading = true)
         }
+    }
+
+    fun login() {
+        setUiStateToLoading()
     }
 }
 
