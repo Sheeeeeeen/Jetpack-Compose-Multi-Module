@@ -74,6 +74,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.hilt.android)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.core.ktx)
     kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)
@@ -85,4 +86,11 @@ dependencies {
     debugImplementation(libs.ui.test.manifest)
 
     implementation(libs.bundles.navigation)
+
+    implementation(libs.kotlinx.coroutines.test.jvm)
+
+    testImplementation(libs.robolectric)
+    
+    implementation(libs.androidx.datastore.android)
+
 }
