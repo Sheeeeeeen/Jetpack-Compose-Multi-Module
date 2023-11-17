@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
 import androidx.test.core.app.ApplicationProvider
+import app.cash.turbine.test
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -21,7 +22,6 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import ph.com.sheen.dashboard.dashboardNavigationRoute
 import ph.com.sheen.datastore.DefaultUserDataStore
-import ph.com.sheen.datastore.UserDataStore
 import ph.com.sheen.login.loginNavigationRoute
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -56,8 +56,11 @@ class MainViewModelTest {
 
     @Test
     fun `test viewmodel to retrieve start destination if user is logged in`() = runBlocking {
-        val route =
-            if (viewModel.isUserLoggedIn.value) dashboardNavigationRoute else loginNavigationRoute
-        assertTrue(route == dashboardNavigationRoute)
+        dataStore.setUserIsLoginStatus(true)
+        viewModel.isUserLoggedIn.test {
+            val route =
+                if (awaitItem()) dashboardNavigationRoute else loginNavigationRoute
+            assertTrue(route == dashboardNavigationRoute)
+        }
     }
 }

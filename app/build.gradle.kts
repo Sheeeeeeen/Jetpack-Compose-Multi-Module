@@ -93,4 +93,6 @@ dependencies {
     
     implementation(libs.androidx.datastore.android)
 
+    testImplementation(libs.turbine)
+
 }
