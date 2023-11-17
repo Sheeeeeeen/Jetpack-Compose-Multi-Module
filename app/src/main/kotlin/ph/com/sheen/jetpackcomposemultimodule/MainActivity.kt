@@ -6,14 +6,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.launch
 import ph.com.sheen.dashboard.dashboardNavigationRoute
 import ph.com.sheen.designsystem.theme.ui.JetpackComposeMultiModuleTheme
@@ -23,26 +21,38 @@ import ph.com.sheen.login.loginNavigationRoute
 class MainActivity : ComponentActivity() {
 
     private var destination: String = loginNavigationRoute
+
+    private val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            splashScreen.addSplashScreenEffect()
+            splashScreen.addSplashScreenEffect(
+                startAnimation = { sView ->
+                    lifecycleScope.launch {
+                        viewModel.shouldKeepSplashScreen.combine(viewModel.isUserLoggedIn) { shouldNotDismiss, isLoggedIn ->
+                            MainUiState(
+                                shouldNotDismiss = shouldNotDismiss,
+                                startDestination = if (isLoggedIn) dashboardNavigationRoute else loginNavigationRoute
+                            )
+                        }.collect {
+                            if (it.shouldNotDismiss.not()) {
+                                sView.start()
+                            }
+                        }
+                    }
+                }
+            )
         } else {
             val splashScreen = installSplashScreen()
             splashScreen.setKeepOnScreenCondition {
-                false
+                viewModel.shouldKeepSplashScreen.value
             }
         }
+
         super.onCreate(savedInstanceState)
 
         setContent {
             JetpackComposeMultiModuleTheme {
                 val navHostController = rememberNavController()
-                val viewModel by viewModels<MainViewModel>()
-                val result = viewModel.isUserLoggedIn.collectAsState()
-                LaunchedEffect(result) {
-                    destination =
-                        if (result.value) dashboardNavigationRoute else loginNavigationRoute
-                }
                 AppNavHost(navController = navHostController, startDestination = destination)
             }
         }

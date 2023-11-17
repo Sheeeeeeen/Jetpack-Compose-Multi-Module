@@ -5,9 +5,10 @@ import android.os.Build
 import android.view.View
 import android.view.animation.AnticipateInterpolator
 import android.window.SplashScreen
+import android.window.SplashScreenView
 import androidx.core.animation.doOnEnd
 
-fun SplashScreen.addSplashScreenEffect() {
+fun SplashScreen.addSplashScreenEffect(startAnimation: (ObjectAnimator) -> Unit) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         this.setOnExitAnimationListener { splashScreenView ->
             // Create your custom animation.
@@ -24,7 +25,8 @@ fun SplashScreen.addSplashScreenEffect() {
             slideUp.doOnEnd { splashScreenView.remove() }
 
             // Run your animation.
-            slideUp.start()
+//            slideUp.start()
+            startAnimation(slideUp)
         }
     }
 }
