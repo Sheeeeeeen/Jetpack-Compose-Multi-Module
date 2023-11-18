@@ -49,17 +49,15 @@ class MainViewModelTest {
     @Test
     fun `test viewmodel to retrieve start destination if user is not yet logged in`() =
         runBlocking {
-            val route =
-                if (viewModel.isUserLoggedIn.value) dashboardNavigationRoute else loginNavigationRoute
+            val route = viewModel.mainUiState.value.startDestination
             assertTrue(route == loginNavigationRoute)
         }
 
     @Test
     fun `test viewmodel to retrieve start destination if user is logged in`() = runBlocking {
         dataStore.setUserIsLoginStatus(true)
-        viewModel.isUserLoggedIn.test {
-            val route =
-                if (awaitItem()) dashboardNavigationRoute else loginNavigationRoute
+        viewModel.mainUiState.test {
+            val route = awaitItem().startDestination
             assertTrue(route == dashboardNavigationRoute)
         }
     }
