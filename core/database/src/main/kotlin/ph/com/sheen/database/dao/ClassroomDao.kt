@@ -6,5 +6,6 @@ import ph.com.sheen.database.ClassroomEntity
 interface ClassroomDao {
 
     fun getAllClassroom(): Flow<List<ClassroomEntity>>
+    fun insert(classroomEntity: ClassroomEntity)
 
 }

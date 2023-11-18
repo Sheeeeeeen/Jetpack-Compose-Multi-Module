@@ -10,6 +10,7 @@ import org.junit.Before
 import org.junit.Test
 import ph.com.sheen.database.ClassroomEntity
 import ph.com.sheen.database.dao.ClassroomDao
+import java.util.UUID
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class DefaultClassroomRepositoryTest {
@@ -26,10 +27,13 @@ class DefaultClassroomRepositoryTest {
                 return classrooms.asFlow()
             }
 
-            fun insertEmpty() {
-                classrooms.add(listOf())
+            override fun insert(classroomEntity: ClassroomEntity) {
+                classrooms.add(index = 0, element = listOf(classroomEntity))
             }
 
+            fun insertEmpty(list: List<ClassroomEntity> = emptyList()) {
+                classrooms.add(list)
+            }
         }
         defaultClassroomRepository = DefaultClassroomRepository(dao = classroomDao)
     }
@@ -41,6 +45,20 @@ class DefaultClassroomRepositoryTest {
         listOfClassroom.test {
             assertTrue(awaitItem().isEmpty())
             cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    //add classroom
+    @Test
+    fun `test add classroom`() = runTest {
+        val id = UUID.randomUUID()
+        val classroomEntity = ClassroomEntity(id = id)
+        defaultClassroomRepository.saveClassroom(classroom = classroomEntity.toModel())
+        val listOfClassroom = defaultClassroomRepository.fetchClassroom()
+        listOfClassroom.test {
+            val classroom = awaitItem().first { it.id == id }
+            assertTrue(classroom == classroomEntity.toModel())
+            cancelAndConsumeRemainingEvents()
         }
     }
 
