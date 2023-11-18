@@ -55,4 +55,6 @@ dependencies {
 
     //flow testing library
     testImplementation(libs.turbine)
+
+    implementation(libs.kotlinx.coroutines.test.jvm)
 }
