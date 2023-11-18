@@ -1,13 +1,16 @@
 package ph.com.sheen.database.repository
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import ph.com.sheen.database.Classroom
 import ph.com.sheen.database.ClassroomRepository
 import ph.com.sheen.database.dao.ClassroomDao
+import ph.com.sheen.database.toModels
 
-class DefaultClassroomRepository(dao: ClassroomDao) : ClassroomRepository {
+class DefaultClassroomRepository(private val dao: ClassroomDao) : ClassroomRepository {
     override fun fetchClassroom(): Flow<List<Classroom>> {
-        TODO("Not yet implemented")
+        return dao.getAllClassroom().map {
+            it.toModels()
+        }
     }
-
 }

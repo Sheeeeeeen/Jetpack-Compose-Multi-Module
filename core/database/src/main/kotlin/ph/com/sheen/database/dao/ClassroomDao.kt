@@ -1,7 +1,10 @@
 package ph.com.sheen.database.dao
 
-import androidx.room.Dao
+import kotlinx.coroutines.flow.Flow
+import ph.com.sheen.database.ClassroomEntity
 
 interface ClassroomDao {
+
+    fun getAllClassroom(): Flow<List<ClassroomEntity>>
 
 }
