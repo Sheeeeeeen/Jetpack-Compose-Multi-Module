@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
         lifecycleScope.launch {
             viewModel.mainUiState.collect {
                 splashScreen.setKeepOnScreenCondition {
-                    it.shouldNotDismiss
+                    it.keepScreenShowing
                 }
             }
         }
@@ -32,12 +32,10 @@ class MainActivity : ComponentActivity() {
             JetpackComposeMultiModuleTheme {
                 val uiState = viewModel.mainUiState.collectAsState()
                 val navHostController = rememberNavController()
-                if (uiState.value.startDestination.isEmpty().not()) {
-                    AppNavHost(
-                        navController = navHostController,
-                        startDestination = uiState.value.startDestination
-                    )
-                }
+                AppNavHost(
+                    navController = navHostController,
+                    startDestination = uiState.value.startDestination
+                )
             }
         }
     }

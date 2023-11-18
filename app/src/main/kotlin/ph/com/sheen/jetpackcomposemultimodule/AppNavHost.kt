@@ -16,6 +16,9 @@ fun AppNavHost(
     navController: NavHostController,
     startDestination: String = loginNavigationRoute,
 ) {
+    if (startDestination.isEmpty())
+        return
+
     NavHost(
         navController = navController,
         startDestination = startDestination,

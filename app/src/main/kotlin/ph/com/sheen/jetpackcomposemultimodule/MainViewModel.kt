@@ -19,10 +19,12 @@ class MainViewModel @Inject constructor(private val dataStore: UserDataStore) : 
     init {
         viewModelScope.launch {
             dataStore.getIsUserLogin().collect { isUserLoggedIn ->
+                val startDestination =
+                    if (isUserLoggedIn) dashboardNavigationRoute else loginNavigationRoute
                 mainUiState.update {
                     it.copy(
-                        shouldNotDismiss = false,
-                        startDestination = if (isUserLoggedIn) dashboardNavigationRoute else loginNavigationRoute
+                        keepScreenShowing = false,
+                        startDestination = startDestination
                     )
                 }
             }
