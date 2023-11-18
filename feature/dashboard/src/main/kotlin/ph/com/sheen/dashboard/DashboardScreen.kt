@@ -14,10 +14,12 @@ fun DashboardRoute() {
 @Composable
 fun DashboardScreen(modifier: Modifier = Modifier) {
     BuildLoginScreen {
-        LazyColumn {
-            repeat(100) {
-                item {
-                    Container {
+        Container(
+            topAppBar = { AppBar() }
+        ) {
+            LazyColumn {
+                repeat(100) {
+                    item {
                         ClassroomItem(modifier = Modifier)
                     }
                 }
