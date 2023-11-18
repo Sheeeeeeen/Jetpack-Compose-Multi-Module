@@ -52,4 +52,7 @@ dependencies {
 
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
+
+    //flow testing library
+    testImplementation(libs.turbine)
 }
