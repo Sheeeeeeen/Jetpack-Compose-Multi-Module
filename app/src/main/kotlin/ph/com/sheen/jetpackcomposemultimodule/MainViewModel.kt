@@ -21,7 +21,7 @@ class MainViewModel @Inject constructor(private val dataStore: UserDataStore) : 
             dataStore.getIsUserLogin().collect { isUserLoggedIn ->
                 mainUiState.update {
                     it.copy(
-                        shouldNotDismiss = true,
+                        shouldNotDismiss = false,
                         startDestination = if (isUserLoggedIn) dashboardNavigationRoute else loginNavigationRoute
                     )
                 }

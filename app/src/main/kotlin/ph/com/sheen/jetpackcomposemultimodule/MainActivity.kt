@@ -20,25 +20,15 @@ class MainActivity : ComponentActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            splashScreen.addSplashScreenEffect(
-                startAnimation = { sView ->
-                    sView.start()
-                }
-            )
-        } else {
-            val splashScreen = installSplashScreen()
-            lifecycleScope.launch {
-                viewModel.mainUiState.collect {
-                    splashScreen.setKeepOnScreenCondition {
-                        it.shouldNotDismiss
-                    }
+        super.onCreate(savedInstanceState)
+        val splashScreen = installSplashScreen()
+        lifecycleScope.launch {
+            viewModel.mainUiState.collect {
+                splashScreen.setKeepOnScreenCondition {
+                    it.shouldNotDismiss
                 }
             }
         }
-
-        super.onCreate(savedInstanceState)
-
         setContent {
             JetpackComposeMultiModuleTheme {
                 val uiState = viewModel.mainUiState.collectAsState()
