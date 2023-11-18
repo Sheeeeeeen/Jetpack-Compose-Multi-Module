@@ -8,6 +8,9 @@ import android.window.SplashScreen
 import android.window.SplashScreenView
 import androidx.core.animation.doOnEnd
 
+/**
+ * Use this function to customized the animation of splash screen
+ * **/
 fun SplashScreen.addSplashScreenEffect(startAnimation: (ObjectAnimator) -> Unit) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
         this.setOnExitAnimationListener { splashScreenView ->
@@ -30,3 +33,4 @@ fun SplashScreen.addSplashScreenEffect(startAnimation: (ObjectAnimator) -> Unit)
         }
     }
 }
+
