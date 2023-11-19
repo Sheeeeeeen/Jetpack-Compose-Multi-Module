@@ -30,7 +30,9 @@ import org.robolectric.RobolectricTestRunner
 class DefaultUserDataStoreTest {
 
     private val testContext: Context = ApplicationProvider.getApplicationContext()
+
     private val testCoroutineDispatcher: TestDispatcher = UnconfinedTestDispatcher()
+
     private val testCoroutineScope = TestScope(testCoroutineDispatcher + Job())
 
     private lateinit var userDataStore: UserDataStore
