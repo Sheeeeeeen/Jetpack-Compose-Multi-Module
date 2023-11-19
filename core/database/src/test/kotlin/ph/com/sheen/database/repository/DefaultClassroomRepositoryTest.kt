@@ -1,7 +1,6 @@
 package ph.com.sheen.database.repository
 
 import app.cash.turbine.test
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.test.runTest
@@ -12,7 +11,6 @@ import ph.com.sheen.database.ClassroomEntity
 import ph.com.sheen.database.dao.ClassroomDao
 import java.util.UUID
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class DefaultClassroomRepositoryTest {
 
     private lateinit var classroomDao: ClassroomDao
@@ -50,19 +48,31 @@ class DefaultClassroomRepositoryTest {
 
     //add classroom
     @Test
-    fun `test add classroom`() = runTest {
+    fun `test add classroom with 1 item on list`() = runTest {
         val id = UUID.randomUUID()
-        val classroomEntity = ClassroomEntity(id = id)
-        defaultClassroomRepository.saveClassroom(classroom = classroomEntity.toModel())
+        val insertedClassroomEntity = ClassroomEntity(id = id)
+        val classroomModel = insertedClassroomEntity.toModel()
+        defaultClassroomRepository.saveClassroom(classroom = classroomModel)
         val listOfClassroom = defaultClassroomRepository.fetchClassroom()
         listOfClassroom.test {
-            val classroom = awaitItem().first { it.id == id }
-            assertTrue(classroom == classroomEntity.toModel())
+            val classrooms = awaitItem()
+            val filterClassroom = classrooms.first { it.id == id }
+            assertTrue(filterClassroom == insertedClassroomEntity.toModel())
+            assertTrue(classrooms.isNotEmpty())
             cancelAndConsumeRemainingEvents()
         }
     }
 
     //retrieve classroom via id
+    @Test
+    fun `test retrieve classroom via id`() = runTest {
+        val listOfClassroom = defaultClassroomRepository.fetchClassroom()
+        listOfClassroom.test {
+            val classrooms = awaitItem()
+            assertTrue(classrooms.isEmpty())
+            cancelAndConsumeRemainingEvents()
+        }
+    }
 
     //delete classroom
 
