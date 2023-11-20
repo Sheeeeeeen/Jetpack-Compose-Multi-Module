@@ -43,7 +43,11 @@ fun BuildLoginScreen(
 class DashboardComponent {
 
     @Composable
-    fun AppBar(modifier: Modifier = Modifier) {
+    fun AppBar(
+        modifier: Modifier = Modifier,
+        onMenuTapped: () -> Unit = {},
+        onNotificationTapped: () -> Unit = {},
+    ) {
         TopAppBar(
             modifier = modifier,
             title = {
@@ -54,12 +58,12 @@ class DashboardComponent {
                 )
             },
             navigationIcon = {
-                IconButton(onClick = {}) {
+                IconButton(onClick = onMenuTapped) {
                     Icon(imageVector = Icons.Outlined.Menu, contentDescription = "menu")
                 }
             },
             actions = {
-                IconButton(onClick = {}) {
+                IconButton(onClick = onNotificationTapped) {
                     Icon(imageVector = Icons.Outlined.Notifications, contentDescription = "menu")
                 }
             }
