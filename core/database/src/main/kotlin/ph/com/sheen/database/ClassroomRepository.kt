@@ -1,6 +1,7 @@
 package ph.com.sheen.database
 
 import kotlinx.coroutines.flow.Flow
+import java.util.UUID
 
 interface ClassroomRepository {
     fun fetchClassroom(): Flow<List<Classroom>>
@@ -10,4 +11,6 @@ interface ClassroomRepository {
     suspend fun deleteClassroom(classroom: Classroom)
 
     suspend fun updateClassroom(classroom: Classroom)
+
+    suspend fun findClassroom(id: UUID): Classroom?
 }
