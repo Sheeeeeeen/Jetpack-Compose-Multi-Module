@@ -20,4 +20,9 @@ class DefaultClassroomRepository(private val dao: ClassroomDao) : ClassroomRepos
         val entity = ClassroomEntity(id = classroom.id)
         dao.insert(classroomEntity = entity)
     }
+
+    override fun deleteClassroom(classroom: Classroom) {
+        val entity = ClassroomEntity(id = classroom.id)
+        dao.deleteClassroom(classroomEntity = entity )
+    }
 }

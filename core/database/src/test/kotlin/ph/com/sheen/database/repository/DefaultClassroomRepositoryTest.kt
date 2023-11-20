@@ -32,6 +32,12 @@ class DefaultClassroomRepositoryTest {
             fun insertEmpty(list: List<ClassroomEntity> = emptyList()) {
                 classrooms.add(list)
             }
+
+            override fun deleteClassroom(classroomEntity: ClassroomEntity) {
+                classrooms.removeIf {
+                    it.contains(classroomEntity)
+                }
+            }
         }
         defaultClassroomRepository = DefaultClassroomRepository(dao = classroomDao)
     }
@@ -75,7 +81,20 @@ class DefaultClassroomRepositoryTest {
     }
 
     //delete classroom
-
+    @Test
+    fun `test delete classroom`() = runTest {
+        val id = UUID.randomUUID()
+        val insertedClassroomEntity = ClassroomEntity(id = id)
+        val classroomModel = insertedClassroomEntity.toModel()
+        defaultClassroomRepository.saveClassroom(classroom = classroomModel)
+        defaultClassroomRepository.deleteClassroom(classroom = classroomModel)
+        val listOfClassroom = defaultClassroomRepository.fetchClassroom()
+        listOfClassroom.test {
+            val classrooms = awaitItem()
+            assertTrue(classrooms.isEmpty())
+            cancelAndConsumeRemainingEvents()
+        }
+    }
     //delete classrooms
 
     //update classroom
