@@ -8,5 +8,8 @@ import ph.com.sheen.database.entity.ClassroomEntity
 @Database(entities = [ClassroomEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
+    companion object {
+        val DB_NAME = "AppDatabase.db"
+    }
     abstract fun classroomDao(): ClassroomDao
 }

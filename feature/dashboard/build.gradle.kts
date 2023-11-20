@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.androidx.hilt.navigation.compose)
+    implementation(project(mapOf("path" to ":data")))
 
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
