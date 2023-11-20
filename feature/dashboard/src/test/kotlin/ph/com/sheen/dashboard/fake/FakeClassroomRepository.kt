@@ -1,17 +1,20 @@
 package ph.com.sheen.dashboard.fake
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import ph.com.sheen.data.ClassroomRepository
 import ph.com.sheen.data.model.Classroom
 import java.util.UUID
 
 class FakeClassroomRepository : ClassroomRepository {
+
+    private val classrooms: MutableList<Classroom> = mutableListOf()
     override fun fetchClassroom(): Flow<List<Classroom>> {
-        TODO("Not yet implemented")
+        return listOf(classrooms).asFlow()
     }
 
     override suspend fun saveClassroom(classroom: Classroom) {
-        TODO("Not yet implemented")
+        classrooms.add(classroom)
     }
 
     override suspend fun deleteClassroom(classroom: Classroom) {
