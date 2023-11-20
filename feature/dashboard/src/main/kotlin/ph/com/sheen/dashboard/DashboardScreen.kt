@@ -8,25 +8,32 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import ph.com.sheen.data.model.createClassroom
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
 fun DashboardRoute(viewModel: DashboardViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
-    DashboardScreen(uiState = uiState)
+    DashboardScreen(
+        uiState = uiState,
+        onNotificationTapped = { viewModel.saveClassroom(classroom = createClassroom()) })
 }
 
 @Composable
-fun DashboardScreen(modifier: Modifier = Modifier, uiState: DashboardUiState) {
+fun DashboardScreen(
+    modifier: Modifier = Modifier,
+    uiState: DashboardUiState,
+    onNotificationTapped: () -> Unit = {},
+) {
     BuildLoginScreen {
         Container(
-            topAppBar = { AppBar() }
+            topAppBar = { AppBar(onNotificationTapped = onNotificationTapped) }
         ) {
             LazyColumn {
                 items(
                     items = uiState.classrooms,
                     key = {
-                        it.header
+                        it.header.value
                     }
                 ) {
                     ClassroomItem(modifier = Modifier)
