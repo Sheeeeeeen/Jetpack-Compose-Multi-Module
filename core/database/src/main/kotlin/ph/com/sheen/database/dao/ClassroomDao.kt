@@ -11,4 +11,6 @@ interface ClassroomDao {
 
     fun deleteClassroom(classroomEntity: ClassroomEntity)
 
+    fun updateClassroom(classroomEntity: ClassroomEntity)
+
 }

@@ -13,7 +13,9 @@ import java.util.UUID
 
 class DefaultClassroomRepositoryTest {
 
+    //TODO Create unit test first on room database
     private lateinit var classroomDao: ClassroomDao
+
     private lateinit var defaultClassroomRepository: DefaultClassroomRepository
 
     @Before
@@ -37,6 +39,10 @@ class DefaultClassroomRepositoryTest {
                 classrooms.removeIf {
                     it.contains(classroomEntity)
                 }
+            }
+
+            override fun updateClassroom(classroomEntity: ClassroomEntity) {
+                TODO("TO be implement")
             }
         }
         defaultClassroomRepository = DefaultClassroomRepository(dao = classroomDao)
@@ -95,7 +101,20 @@ class DefaultClassroomRepositoryTest {
             cancelAndConsumeRemainingEvents()
         }
     }
-    //delete classrooms
 
     //update classroom
+    @Test
+    fun `test update classroom`() = runTest {
+        val id = UUID.randomUUID()
+        val insertedClassroomEntity = ClassroomEntity(id = id)
+        val classroomModel = insertedClassroomEntity.toModel()
+        defaultClassroomRepository.saveClassroom(classroom = classroomModel)
+        defaultClassroomRepository.updateClassroom(classroom = classroomModel)
+        val listOfClassroom = defaultClassroomRepository.fetchClassroom()
+        listOfClassroom.test {
+            val classrooms = awaitItem()
+            assertTrue(classrooms.isEmpty())
+            cancelAndConsumeRemainingEvents()
+        }
+    }
 }

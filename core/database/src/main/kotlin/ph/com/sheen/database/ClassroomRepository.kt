@@ -8,4 +8,5 @@ interface ClassroomRepository {
     fun saveClassroom(classroom: Classroom)
 
     fun deleteClassroom(classroom: Classroom)
+    fun updateClassroom(classroom: Classroom)
 }
