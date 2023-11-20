@@ -36,7 +36,7 @@ class AppDatabaseTest {
 
     //insert
     @Test
-    fun `test insertion and retrieval to verify classroom entity record`() = runTest {
+    fun `test inserting of classroom entity`() = runTest {
         //setup
         val id = UUID.randomUUID()
         val classroomEntity = ClassroomEntity(id = id)
@@ -47,6 +47,17 @@ class AppDatabaseTest {
     }
 
     //retrieve entity by id
+    @Test
+    fun `test retrieval of classroom using query transaction`() = runTest {
+        //setup
+        val id = UUID.randomUUID()
+        val classroomEntity = ClassroomEntity(id = id)
+        //action
+        classroomDao.insert(classroomEntity = classroomEntity)
+        val entity = classroomDao.findClassroomById(id = id)
+        //assert
+        assertTrue(entity == classroomEntity)
+    }
     //update
     //delete
 }
