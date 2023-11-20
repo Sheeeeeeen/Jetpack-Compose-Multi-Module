@@ -22,7 +22,7 @@ interface ClassroomDao {
     fun deleteClassroom(classroomEntity: ClassroomEntity)
 
     @Update
-    fun updateClassroom(classroomEntity: ClassroomEntity)
+    suspend fun updateClassroom(classroomEntity: ClassroomEntity)
 
     @Query("SELECT * FROM classroom WHERE id = :id")
     suspend fun findClassroomById(id: UUID): ClassroomEntity

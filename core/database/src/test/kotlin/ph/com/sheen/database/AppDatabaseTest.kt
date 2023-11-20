@@ -37,27 +37,47 @@ class AppDatabaseTest {
     //insert
     @Test
     fun `test inserting of classroom entity`() = runTest {
-        //setup
+
         val id = UUID.randomUUID()
-        val classroomEntity = ClassroomEntity(id = id)
-        //action
+        val updateDate = System.currentTimeMillis()
+        val classroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+
         val result = classroomDao.insert(classroomEntity = classroomEntity)
-        //assert
+
         assertTrue(result == 1L)
     }
 
     //retrieve entity by id
     @Test
     fun `test retrieval of classroom using query transaction`() = runTest {
-        //setup
+
         val id = UUID.randomUUID()
-        val classroomEntity = ClassroomEntity(id = id)
-        //action
+        val updateDate = System.currentTimeMillis()
+        val classroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+
         classroomDao.insert(classroomEntity = classroomEntity)
         val entity = classroomDao.findClassroomById(id = id)
-        //assert
+
         assertTrue(entity == classroomEntity)
     }
+
     //update
+    @Test
+    fun `test update of a classroom`() = runTest {
+        //setup
+        val id = UUID.randomUUID()
+        val updateDate = System.currentTimeMillis()
+
+        val classroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+        //action
+        classroomDao.insert(classroomEntity = classroomEntity)
+        val newUpdateDate = System.currentTimeMillis()
+        val updateEntity = classroomEntity.copy(lastUpdateDate = newUpdateDate)
+        classroomDao.updateClassroom(classroomEntity = updateEntity)
+        val retrieveClassroom = classroomDao.findClassroomById(id = id)
+        //assert
+        assertTrue(updateEntity == retrieveClassroom)
+    }
+
     //delete
 }

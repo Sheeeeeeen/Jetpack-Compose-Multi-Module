@@ -17,17 +17,20 @@ class DefaultClassroomRepository(private val dao: ClassroomDao) : ClassroomRepos
 
     override suspend fun saveClassroom(classroom: Classroom) {
         //TODO to be enhance
-        val entity = ClassroomEntity(id = classroom.id)
+        val updateDate = System.currentTimeMillis()
+        val entity = ClassroomEntity(id = classroom.id, lastUpdateDate = updateDate)
         dao.insert(classroomEntity = entity)
     }
 
     override fun deleteClassroom(classroom: Classroom) {
-        val entity = ClassroomEntity(id = classroom.id)
+        val updateDate = System.currentTimeMillis()
+        val entity = ClassroomEntity(id = classroom.id, lastUpdateDate = updateDate)
         dao.deleteClassroom(classroomEntity = entity )
     }
 
-    override fun updateClassroom(classroom: Classroom) {
-        val entity = ClassroomEntity(id = classroom.id)
+    override suspend fun updateClassroom(classroom: Classroom) {
+        val updateDate = System.currentTimeMillis()
+        val entity = ClassroomEntity(id = classroom.id, lastUpdateDate = updateDate)
         dao.updateClassroom(classroomEntity = entity )
     }
 }
