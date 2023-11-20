@@ -59,4 +59,6 @@ dependencies {
     testImplementation(libs.turbine)
 
     implementation(libs.kotlinx.coroutines.test.jvm)
+
+    testImplementation(libs.robolectric)
 }
