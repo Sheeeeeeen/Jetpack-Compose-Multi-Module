@@ -18,7 +18,9 @@ class FakeClassroomRepository : ClassroomRepository {
     }
 
     override suspend fun deleteClassroom(classroom: Classroom) {
-        TODO("Not yet implemented")
+        classrooms.removeIf {
+            it == classroom
+        }
     }
 
     override suspend fun updateClassroom(classroom: Classroom) {

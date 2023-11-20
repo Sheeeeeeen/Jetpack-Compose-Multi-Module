@@ -63,6 +63,20 @@ class DashboardViewModelTest {
         }
     }
 
+    @Test
+    fun `test delete classroom on list`() = runTest {
+        //setup
+        val classroom = createClassroomModel()
+        val classroom2 = createClassroomModel()
+        //action
+        viewModel.saveClassroom(classroom = classroom)
+        viewModel.deleteClassroom(classroom = classroom)
+        //assert
+        viewModel.uiState.test {
+            assertTrue(awaitItem().classrooms.isEmpty())
+        }
+    }
+
     private fun createClassroomModel(): Classroom {
         val id = UUID.randomUUID()
         val updateDate = System.currentTimeMillis()

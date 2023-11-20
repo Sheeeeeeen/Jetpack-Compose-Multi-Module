@@ -36,6 +36,12 @@ class DashboardViewModel @Inject constructor(private val classroomRepository: Cl
             classroomRepository.saveClassroom(classroom)
         }
     }
+
+    fun deleteClassroom(classroom: Classroom) {
+        viewModelScope.launch {
+            classroomRepository.deleteClassroom(classroom = classroom)
+        }
+    }
 }
 
 data class DashboardUiState(val classrooms: List<Classroom> = emptyList())
