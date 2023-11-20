@@ -7,7 +7,7 @@ interface ClassroomRepository {
 
     suspend fun saveClassroom(classroom: Classroom)
 
-    fun deleteClassroom(classroom: Classroom)
+    suspend fun deleteClassroom(classroom: Classroom)
 
     suspend fun updateClassroom(classroom: Classroom)
 }

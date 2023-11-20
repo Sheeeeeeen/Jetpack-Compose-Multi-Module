@@ -64,20 +64,34 @@ class AppDatabaseTest {
     //update
     @Test
     fun `test update of a classroom`() = runTest {
-        //setup
+
         val id = UUID.randomUUID()
         val updateDate = System.currentTimeMillis()
 
         val classroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
-        //action
+
         classroomDao.insert(classroomEntity = classroomEntity)
         val newUpdateDate = System.currentTimeMillis()
         val updateEntity = classroomEntity.copy(lastUpdateDate = newUpdateDate)
         classroomDao.updateClassroom(classroomEntity = updateEntity)
         val retrieveClassroom = classroomDao.findClassroomById(id = id)
-        //assert
+
         assertTrue(updateEntity == retrieveClassroom)
     }
 
     //delete
+    @Test
+    fun `test deletion of a classroom`() = runTest {
+
+        val id = UUID.randomUUID()
+        val updateDate = System.currentTimeMillis()
+        val newClassroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+
+        classroomDao.insert(newClassroomEntity)
+        classroomDao.deleteClassroom(newClassroomEntity)
+        val retrieveClassroom = classroomDao.findClassroomById(id = id)
+
+        assertTrue(retrieveClassroom == null)
+
+    }
 }

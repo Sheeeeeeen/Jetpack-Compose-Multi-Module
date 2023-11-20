@@ -19,12 +19,12 @@ interface ClassroomDao {
     suspend fun insert(classroomEntity: ClassroomEntity): Long
 
     @Delete
-    fun deleteClassroom(classroomEntity: ClassroomEntity)
+    suspend fun deleteClassroom(classroomEntity: ClassroomEntity)
 
     @Update
     suspend fun updateClassroom(classroomEntity: ClassroomEntity)
 
     @Query("SELECT * FROM classroom WHERE id = :id")
-    suspend fun findClassroomById(id: UUID): ClassroomEntity
+    suspend fun findClassroomById(id: UUID): ClassroomEntity?
 
 }
