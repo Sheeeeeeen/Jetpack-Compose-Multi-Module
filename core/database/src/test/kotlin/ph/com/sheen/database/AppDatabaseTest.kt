@@ -11,6 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import ph.com.sheen.database.dao.ClassroomDao
+import ph.com.sheen.database.entity.ClassroomEntity
 import java.io.IOException
 import java.util.UUID
 

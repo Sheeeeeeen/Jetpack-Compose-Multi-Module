@@ -1,8 +1,9 @@
-package ph.com.sheen.database
+package ph.com.sheen.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import ph.com.sheen.database.Classroom
 import java.util.UUID
 
 @Entity(

@@ -11,7 +11,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import ph.com.sheen.database.AppDatabase
-import ph.com.sheen.database.ClassroomEntity
+import ph.com.sheen.database.entity.ClassroomEntity
 import ph.com.sheen.database.dao.ClassroomDao
 import java.util.UUID
 

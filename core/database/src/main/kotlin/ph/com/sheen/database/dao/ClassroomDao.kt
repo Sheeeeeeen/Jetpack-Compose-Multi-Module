@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
-import ph.com.sheen.database.ClassroomEntity
+import ph.com.sheen.database.entity.ClassroomEntity
 import java.util.UUID
 
 @Dao
