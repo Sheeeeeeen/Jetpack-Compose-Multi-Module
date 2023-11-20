@@ -38,25 +38,27 @@ class AppDatabaseTest {
     @Test
     fun `test inserting of classroom entity`() = runTest {
 
-        val id = UUID.randomUUID()
-        val updateDate = System.currentTimeMillis()
-        val classroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+        val classroomEntity = createClassroomEntity()
 
         val result = classroomDao.insert(classroomEntity = classroomEntity)
 
         assertTrue(result == 1L)
     }
 
+    private fun createClassroomEntity(): ClassroomEntity {
+        val id = UUID.randomUUID()
+        val updateDate = System.currentTimeMillis()
+        return ClassroomEntity(id = id, lastUpdateDate = updateDate)
+    }
+
     //retrieve entity by id
     @Test
     fun `test retrieval of classroom using query transaction`() = runTest {
 
-        val id = UUID.randomUUID()
-        val updateDate = System.currentTimeMillis()
-        val classroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+        val classroomEntity = createClassroomEntity()
 
         classroomDao.insert(classroomEntity = classroomEntity)
-        val entity = classroomDao.findClassroomById(id = id)
+        val entity = classroomDao.findClassroomById(id = classroomEntity.id)
 
         assertTrue(entity == classroomEntity)
     }
@@ -65,16 +67,13 @@ class AppDatabaseTest {
     @Test
     fun `test update of a classroom`() = runTest {
 
-        val id = UUID.randomUUID()
-        val updateDate = System.currentTimeMillis()
-
-        val classroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+        val classroomEntity = createClassroomEntity()
 
         classroomDao.insert(classroomEntity = classroomEntity)
         val newUpdateDate = System.currentTimeMillis()
         val updateEntity = classroomEntity.copy(lastUpdateDate = newUpdateDate)
         classroomDao.updateClassroom(classroomEntity = updateEntity)
-        val retrieveClassroom = classroomDao.findClassroomById(id = id)
+        val retrieveClassroom = classroomDao.findClassroomById(id = classroomEntity.id)
 
         assertTrue(updateEntity == retrieveClassroom)
     }
@@ -83,13 +82,11 @@ class AppDatabaseTest {
     @Test
     fun `test deletion of a classroom`() = runTest {
 
-        val id = UUID.randomUUID()
-        val updateDate = System.currentTimeMillis()
-        val newClassroomEntity = ClassroomEntity(id = id, lastUpdateDate = updateDate)
+        val newClassroomEntity = createClassroomEntity()
 
         classroomDao.insert(newClassroomEntity)
         classroomDao.deleteClassroom(newClassroomEntity)
-        val retrieveClassroom = classroomDao.findClassroomById(id = id)
+        val retrieveClassroom = classroomDao.findClassroomById(id = newClassroomEntity.id)
 
         assertTrue(retrieveClassroom == null)
 
