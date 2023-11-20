@@ -1,18 +1,18 @@
-package ph.com.sheen.database.repository
+package ph.com.sheen.data
 
 import android.content.Context
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import app.cash.turbine.test
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertTrue
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import ph.com.sheen.database.AppDatabase
-import ph.com.sheen.database.entity.ClassroomEntity
 import ph.com.sheen.database.dao.ClassroomDao
+import ph.com.sheen.database.entity.ClassroomEntity
 import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
@@ -39,7 +39,7 @@ class DefaultClassroomRepositoryTest {
         val listOfClassroom = defaultClassroomRepository.fetchClassroom()
 
         listOfClassroom.test {
-            assertTrue(awaitItem().isEmpty())
+            Assert.assertTrue(awaitItem().isEmpty())
             cancelAndIgnoreRemainingEvents()
         }
     }
@@ -58,8 +58,8 @@ class DefaultClassroomRepositoryTest {
             val classrooms = awaitItem()
             val id = insertedClassroomEntity.id
             val filterClassroom = classrooms.first { it.id == id }
-            assertTrue(filterClassroom == insertedClassroomEntity.toModel())
-            assertTrue(classrooms.isNotEmpty())
+            Assert.assertTrue(filterClassroom == insertedClassroomEntity.toModel())
+            Assert.assertTrue(classrooms.isNotEmpty())
             cancelAndConsumeRemainingEvents()
         }
     }
@@ -71,7 +71,7 @@ class DefaultClassroomRepositoryTest {
 
         listOfClassroom.test {
             val classrooms = awaitItem()
-            assertTrue(classrooms.isEmpty())
+            Assert.assertTrue(classrooms.isEmpty())
             cancelAndConsumeRemainingEvents()
         }
     }
@@ -88,7 +88,7 @@ class DefaultClassroomRepositoryTest {
 
         listOfClassroom.test {
             val classrooms = awaitItem()
-            assertTrue(classrooms.isEmpty())
+            Assert.assertTrue(classrooms.isEmpty())
             cancelAndConsumeRemainingEvents()
         }
     }
@@ -108,7 +108,7 @@ class DefaultClassroomRepositoryTest {
         defaultClassroomRepository.updateClassroom(classroom = updatedClassroom)
 
         val retrieveClassroom = defaultClassroomRepository.findClassroom(id = updatedClassroom.id)
-        assertTrue(retrieveClassroom == updatedClassroom)
+        Assert.assertTrue(retrieveClassroom == updatedClassroom)
     }
 
     private fun createClassroomEntity(): ClassroomEntity {
