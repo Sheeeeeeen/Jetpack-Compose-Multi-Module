@@ -14,3 +14,9 @@ fun List<ClassroomEntity>.toModels(): List<Classroom> {
         it.toModel()
     }
 }
+
+fun createClassroom(): Classroom {
+    val id = UUID.randomUUID()
+    val lastUpdate = System.currentTimeMillis()
+    return Classroom(id = id, lastUpdateDate = lastUpdate)
+}
