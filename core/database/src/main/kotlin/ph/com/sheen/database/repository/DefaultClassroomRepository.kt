@@ -15,7 +15,7 @@ class DefaultClassroomRepository(private val dao: ClassroomDao) : ClassroomRepos
         }
     }
 
-    override fun saveClassroom(classroom: Classroom) {
+    override suspend fun saveClassroom(classroom: Classroom) {
         //TODO to be enhance
         val entity = ClassroomEntity(id = classroom.id)
         dao.insert(classroomEntity = entity)
