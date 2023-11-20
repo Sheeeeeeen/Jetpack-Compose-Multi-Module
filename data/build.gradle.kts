@@ -42,10 +42,18 @@ dependencies {
     implementation(libs.material)
     implementation(project(mapOf("path" to ":core:database")))
     implementation(project(mapOf("path" to ":core:datastore")))
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.room.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    testImplementation(libs.turbine)
+
+    testImplementation(libs.robolectric)
+
+    implementation(libs.kotlinx.coroutines.test.jvm)
 }
