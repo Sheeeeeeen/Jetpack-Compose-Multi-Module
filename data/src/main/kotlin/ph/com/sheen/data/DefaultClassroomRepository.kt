@@ -2,10 +2,11 @@ package ph.com.sheen.data
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import ph.com.sheen.database.Classroom
+import ph.com.sheen.data.model.Classroom
+import ph.com.sheen.data.model.toModel
+import ph.com.sheen.data.model.toModels
 import ph.com.sheen.database.dao.ClassroomDao
 import ph.com.sheen.database.entity.ClassroomEntity
-import ph.com.sheen.database.entity.toModels
 import java.util.UUID
 
 class DefaultClassroomRepository(private val dao: ClassroomDao) : ClassroomRepository {

@@ -1,7 +1,7 @@
 package ph.com.sheen.data
 
 import kotlinx.coroutines.flow.Flow
-import ph.com.sheen.database.Classroom
+import ph.com.sheen.data.model.Classroom
 import java.util.UUID
 
 interface ClassroomRepository {
