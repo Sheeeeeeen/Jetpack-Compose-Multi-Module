@@ -40,6 +40,7 @@ fun LoginScreen(uiState: LoginUIState, onLoginClick: () -> Unit) {
                 onClick = onLoginClick
             )
             //TODO add smooth animation to show loading screen
+            //Crashing on a32 device
             AnimatedVisibility(visible = uiState.isLoading) {
                 LoadingSpinner(modifier = Modifier.align(alignment = Alignment.Center))
             }

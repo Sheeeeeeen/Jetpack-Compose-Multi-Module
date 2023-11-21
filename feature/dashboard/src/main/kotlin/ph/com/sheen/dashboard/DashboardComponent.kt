@@ -13,6 +13,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Notifications
@@ -35,6 +37,7 @@ import ph.com.sheen.dashboard.model.ClassroomUi
 import ph.com.sheen.dashboard.model.toUiModel
 import ph.com.sheen.data.model.Classroom
 import ph.com.sheen.data.model.createClassroom
+import ph.com.sheen.designsystem.SwipeableContainer
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
@@ -98,45 +101,67 @@ class DashboardComponent {
         classroomUi: ClassroomUi,
         onMoreTapped: () -> Unit = {},
     ) {
-        Row(
-            modifier = modifier
-                .clickable { }
-                .background(color = MaterialTheme.colorScheme.surface)
-                .padding(vertical = 8.dp, horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            Box(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(
-                        color = MaterialTheme.colorScheme.primaryContainer,
-                        shape = CircleShape
-                    ),
-                contentAlignment = Alignment.Center
+        SwipeableContainer { modifier1 ->
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Outlined.Email,
+                        contentDescription = "menu",
+                        tint = MaterialTheme.colorScheme.primary
+                    )
+                }
+                IconButton(onClick = {}) {
+                    Icon(
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = "menu",
+                        tint = MaterialTheme.colorScheme.error
+                    )
+                }
+            }
+            Row(
+                modifier = modifier1
+                    .clickable { }
+                    .background(color = MaterialTheme.colorScheme.surface)
+                    .padding(vertical = 8.dp, horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(40.dp)
+                        .background(
+                            color = MaterialTheme.colorScheme.primaryContainer,
+                            shape = CircleShape
+                        ),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        modifier = Modifier,
+                        text = classroomUi.header.value,
+                        textAlign = TextAlign.Center,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
                 Text(
-                    modifier = Modifier,
-                    text = classroomUi.header.value,
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
-                    fontWeight = FontWeight.Bold
+                    modifier = Modifier.weight(1f),
+                    text = classroomUi.classroomName.value,
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                //TODO replace the action using swipe
+                Icon(
+                    modifier = Modifier.clickable { onMoreTapped() },
+                    imageVector = Icons.Outlined.MoreVert,
+                    contentDescription = "icon",
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-            Text(
-                modifier = Modifier.weight(1f),
-                text = classroomUi.classroomName.value,
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            //TODO replace the action using swipe
-            Icon(
-                modifier = Modifier.clickable { onMoreTapped() },
-                imageVector = Icons.Outlined.MoreVert,
-                contentDescription = "icon",
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
         }
+
     }
 
     @Composable
@@ -160,7 +185,6 @@ class DashboardComponent {
             }
         }
     }
-
 }
 
 @Preview(showBackground = true)
