@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import ph.com.sheen.dashboard.model.DashboardUiState
 import ph.com.sheen.data.ClassroomRepository
 import ph.com.sheen.data.model.Classroom
 import javax.inject.Inject
@@ -43,5 +44,3 @@ class DashboardViewModel @Inject constructor(private val classroomRepository: Cl
         }
     }
 }
-
-data class DashboardUiState(val classrooms: List<Classroom> = emptyList())
