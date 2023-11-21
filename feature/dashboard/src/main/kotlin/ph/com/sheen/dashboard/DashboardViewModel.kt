@@ -8,8 +8,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import ph.com.sheen.dashboard.model.ClassroomUi
-import ph.com.sheen.dashboard.model.toListOfClassroomUiModel
 import ph.com.sheen.data.ClassroomRepository
 import ph.com.sheen.data.model.Classroom
 import javax.inject.Inject
@@ -22,7 +20,7 @@ class DashboardViewModel @Inject constructor(private val classroomRepository: Cl
     private val classrooms = classroomRepository.fetchClassroom()
 
     val uiState = MutableStateFlow(DashboardUiState()).combine(classrooms) { uiState, classrooms ->
-        uiState.copy(classrooms = classrooms.toListOfClassroomUiModel())
+        uiState.copy(classrooms = classrooms)
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000L),
@@ -46,4 +44,4 @@ class DashboardViewModel @Inject constructor(private val classroomRepository: Cl
     }
 }
 
-data class DashboardUiState(val classrooms: List<ClassroomUi> = emptyList())
+data class DashboardUiState(val classrooms: List<Classroom> = emptyList())

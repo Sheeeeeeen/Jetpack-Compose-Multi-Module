@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ph.com.sheen.dashboard.model.ClassroomUi
 import ph.com.sheen.dashboard.model.toUiModel
+import ph.com.sheen.data.model.Classroom
 import ph.com.sheen.data.model.createClassroom
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
@@ -92,7 +93,11 @@ class DashboardComponent {
     }
 
     @Composable
-    fun ClassroomItem(modifier: Modifier = Modifier, classroomUi: ClassroomUi) {
+    fun ClassroomItem(
+        modifier: Modifier = Modifier,
+        classroomUi: ClassroomUi,
+        onMoreTapped: () -> Unit = {},
+    ) {
         Row(
             modifier = modifier
                 .clickable { }
@@ -124,7 +129,9 @@ class DashboardComponent {
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface
             )
+            //TODO replace the action using swipe
             Icon(
+                modifier = Modifier.clickable { onMoreTapped() },
                 imageVector = Icons.Outlined.MoreVert,
                 contentDescription = "icon",
                 tint = MaterialTheme.colorScheme.onSurfaceVariant
@@ -134,19 +141,39 @@ class DashboardComponent {
 
     @Composable
     @Stable
-    fun ClassroomList(modifier: Modifier = Modifier, classrooms: List<ClassroomUi> = emptyList()) {
-        LazyColumn {
+    fun ClassroomList(
+        modifier: Modifier = Modifier,
+        classrooms: List<Classroom> = emptyList(),
+        onMoreTapped: (Classroom) -> Unit = {},
+    ) {
+        LazyColumn(modifier = modifier) {
             items(
                 items = classrooms,
-                key = {
-                    it.header.value
-                }
+                key = { it.toUiModel().classroomName.value }
             ) {
-                ClassroomItem(modifier = Modifier, classroomUi = it)
+                val classroomUi = it.toUiModel()
+                ClassroomItem(
+                    modifier = Modifier,
+                    classroomUi = classroomUi,
+                    onMoreTapped = { onMoreTapped(it) }
+                )
             }
         }
     }
 
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PreviewClassroomItem() {
+    AppPreview {
+        BuildLoginScreen {
+            ClassroomItem(
+                modifier = Modifier,
+                classroomUi = createClassroom().toUiModel()
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)

@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import ph.com.sheen.data.model.Classroom
 import ph.com.sheen.data.model.createClassroom
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
@@ -14,7 +15,9 @@ fun DashboardRoute(viewModel: DashboardViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     DashboardScreen(
         uiState = uiState,
-        onNotificationTapped = { viewModel.saveClassroom(classroom = createClassroom()) })
+        onNotificationTapped = { viewModel.saveClassroom(classroom = createClassroom()) },
+        onMoreTapped = viewModel::deleteClassroom
+    )
 }
 
 @Composable
@@ -22,12 +25,18 @@ fun DashboardScreen(
     modifier: Modifier = Modifier,
     uiState: DashboardUiState,
     onNotificationTapped: () -> Unit = {},
+    onMoreTapped: (Classroom) -> Unit = {},
 ) {
     BuildLoginScreen {
         Container(
             topAppBar = { AppBar(onNotificationTapped = onNotificationTapped) }
         ) {
-            ClassroomList(modifier = Modifier, classrooms = uiState.classrooms)
+            val listOfClassroom = uiState.classrooms
+            ClassroomList(
+                modifier = Modifier,
+                classrooms = listOfClassroom,
+                onMoreTapped = onMoreTapped
+            )
         }
     }
 }

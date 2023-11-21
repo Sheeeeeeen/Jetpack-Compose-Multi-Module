@@ -18,7 +18,7 @@ data class ClassroomUi(
 fun Classroom.toUiModel(): ClassroomUi {
     return ClassroomUi(
         id = id,
-        header = ClassroomHeader(value = id.toString().substring(0, 2)),
+        header = ClassroomHeader(value = id.toString().substring(0, 1)),
         classroomName = ClassroomName(value = id.toString())
     )
 }
