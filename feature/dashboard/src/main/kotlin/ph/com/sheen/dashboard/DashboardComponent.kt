@@ -29,6 +29,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ph.com.sheen.dashboard.model.ClassroomUi
+import ph.com.sheen.dashboard.model.toUiModel
+import ph.com.sheen.data.model.createClassroom
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
@@ -87,7 +90,7 @@ class DashboardComponent {
     }
 
     @Composable
-    fun ClassroomItem(modifier: Modifier = Modifier) {
+    fun ClassroomItem(modifier: Modifier = Modifier, classroomUi: ClassroomUi) {
         Row(
             modifier = modifier
                 .clickable { }
@@ -107,7 +110,7 @@ class DashboardComponent {
             ) {
                 Text(
                     modifier = Modifier,
-                    text = "A",
+                    text = classroomUi.header.value,
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     fontWeight = FontWeight.Bold
@@ -115,7 +118,7 @@ class DashboardComponent {
             }
             Text(
                 modifier = Modifier.weight(1f),
-                text = "Headline",
+                text = classroomUi.classroomName.value,
                 style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -140,7 +143,10 @@ private fun PreviewScreen() {
                 ) {
                     repeat(100) {
                         item {
-                            ClassroomItem(modifier = Modifier)
+                            ClassroomItem(
+                                modifier = Modifier,
+                                classroomUi = createClassroom().toUiModel()
+                            )
                         }
                     }
                 }

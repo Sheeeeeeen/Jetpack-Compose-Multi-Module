@@ -36,7 +36,7 @@ fun DashboardScreen(
                         it.header.value
                     }
                 ) {
-                    ClassroomItem(modifier = Modifier)
+                    ClassroomItem(modifier = Modifier, classroomUi = it)
                 }
             }
         }
