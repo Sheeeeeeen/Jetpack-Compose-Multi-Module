@@ -1,7 +1,5 @@
 package ph.com.sheen.dashboard
 
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -29,16 +27,7 @@ fun DashboardScreen(
         Container(
             topAppBar = { AppBar(onNotificationTapped = onNotificationTapped) }
         ) {
-            LazyColumn {
-                items(
-                    items = uiState.classrooms,
-                    key = {
-                        it.header.value
-                    }
-                ) {
-                    ClassroomItem(modifier = Modifier, classroomUi = it)
-                }
-            }
+            ClassroomList(modifier = Modifier, classrooms = uiState.classrooms)
         }
     }
 }
