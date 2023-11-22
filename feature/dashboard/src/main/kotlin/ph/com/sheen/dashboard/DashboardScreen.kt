@@ -17,7 +17,8 @@ fun DashboardRoute(viewModel: DashboardViewModel = hiltViewModel()) {
     DashboardScreen(
         uiState = uiState,
         onNotificationTapped = { viewModel.saveClassroom(classroom = createClassroom()) },
-        onMoreTapped = viewModel::deleteClassroom
+        onSwipeDelete = viewModel::deleteClassroom,
+        onMoreTapped = viewModel::deleteClassroom,
     )
 }
 
@@ -27,6 +28,7 @@ fun DashboardScreen(
     uiState: DashboardUiState,
     onNotificationTapped: () -> Unit = {},
     onMoreTapped: (Classroom) -> Unit = {},
+    onSwipeDelete: (Classroom) -> Unit = {},
 ) {
     BuildLoginScreen {
         Container(
@@ -36,7 +38,8 @@ fun DashboardScreen(
             ClassroomList(
                 modifier = Modifier,
                 classrooms = listOfClassroom,
-                onMoreTapped = onMoreTapped
+                onMoreTapped = onMoreTapped,
+                onSwipeDelete = onSwipeDelete
             )
         }
     }

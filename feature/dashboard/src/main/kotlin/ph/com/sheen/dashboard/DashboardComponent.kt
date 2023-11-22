@@ -100,6 +100,7 @@ class DashboardComponent {
         modifier: Modifier = Modifier,
         classroomUi: ClassroomUi,
         onMoreTapped: () -> Unit = {},
+        onSwipeDelete: () -> Unit = {},
     ) {
         SwipeableContainer { modifier1 ->
             Row(
@@ -113,7 +114,7 @@ class DashboardComponent {
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
-                IconButton(onClick = {}) {
+                IconButton(onClick = onSwipeDelete) {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "menu",
@@ -165,22 +166,23 @@ class DashboardComponent {
     }
 
     @Composable
-    @Stable
     fun ClassroomList(
         modifier: Modifier = Modifier,
         classrooms: List<Classroom> = emptyList(),
         onMoreTapped: (Classroom) -> Unit = {},
+        onSwipeDelete: (Classroom) -> Unit = {},
     ) {
         LazyColumn(modifier = modifier) {
             items(
                 items = classrooms,
-                key = { it.toUiModel().classroomName.value }
+                key = { it.id }
             ) {
                 val classroomUi = it.toUiModel()
                 ClassroomItem(
                     modifier = Modifier,
                     classroomUi = classroomUi,
-                    onMoreTapped = { onMoreTapped(it) }
+                    onMoreTapped = { onMoreTapped(it) },
+                    onSwipeDelete = { onSwipeDelete(it) },
                 )
             }
         }
