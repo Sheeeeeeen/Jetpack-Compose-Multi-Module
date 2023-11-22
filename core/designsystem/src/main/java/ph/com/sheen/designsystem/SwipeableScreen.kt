@@ -33,7 +33,7 @@ fun SwipeableContainer(
     val state = remember {
         AnchoredDraggableState(
             initialValue = DragAnchors.Default,
-            positionalThreshold = { distance: Float -> distance * 0.2f },
+            positionalThreshold = { distance: Float -> distance * 0.5f },
             velocityThreshold = {
                 with(density) {
                     100.dp.toPx()
