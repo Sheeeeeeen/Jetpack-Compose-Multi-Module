@@ -3,9 +3,12 @@ package ph.com.sheen.dashboard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import ph.com.sheen.dashboard.model.DashboardUiState
 import ph.com.sheen.data.model.Classroom
 import ph.com.sheen.data.model.createClassroom
@@ -30,6 +33,8 @@ fun DashboardScreen(
     onMoreTapped: (Classroom) -> Unit = {},
     onSwipeDelete: (Classroom) -> Unit = {},
 ) {
+    val scope = rememberCoroutineScope()
+
     BuildLoginScreen {
         Container(
             topAppBar = { AppBar(onNotificationTapped = onNotificationTapped) }
@@ -39,7 +44,13 @@ fun DashboardScreen(
                 modifier = Modifier,
                 classrooms = listOfClassroom,
                 onMoreTapped = onMoreTapped,
-                onSwipeDelete = onSwipeDelete
+                onSwipeDelete = {
+                    scope.launch {
+                        //add delete to not interrupt the animation of animate visibility
+                        delay(1000L)
+                        onSwipeDelete(it)
+                    }
+                }
             )
         }
     }

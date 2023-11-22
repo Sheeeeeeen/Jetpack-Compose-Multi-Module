@@ -1,5 +1,10 @@
+@file:OptIn(ExperimentalAnimationApi::class)
+
 package ph.com.sheen.dashboard
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +31,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -102,7 +110,7 @@ class DashboardComponent {
         onMoreTapped: () -> Unit = {},
         onSwipeDelete: () -> Unit = {},
     ) {
-        SwipeableContainer { modifier1 ->
+        SwipeableContainer(modifier = modifier) { modifier1 ->
             Row(
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -178,12 +186,29 @@ class DashboardComponent {
                 key = { it.id }
             ) {
                 val classroomUi = it.toUiModel()
-                ClassroomItem(
-                    modifier = Modifier,
-                    classroomUi = classroomUi,
-                    onMoreTapped = { onMoreTapped(it) },
-                    onSwipeDelete = { onSwipeDelete(it) },
-                )
+
+                var visibility by remember { mutableStateOf(true) }
+
+                AnimatedVisibility(
+                    visible = visibility,
+                ) {
+                    ClassroomItem(
+                        //TODO extract this animateEnterExit animation
+                        modifier = Modifier.animateEnterExit(
+                            exit = slideOutHorizontally(
+                                targetOffsetX = { offset ->
+                                    -offset / 1
+                                }
+                            )
+                        ),
+                        classroomUi = classroomUi,
+                        onMoreTapped = { onMoreTapped(it) },
+                        onSwipeDelete = {
+                            visibility = false
+                            onSwipeDelete(it)
+                        },
+                    )
+                }
             }
         }
     }
