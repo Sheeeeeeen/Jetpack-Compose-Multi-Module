@@ -46,6 +46,7 @@ import ph.com.sheen.dashboard.model.toUiModel
 import ph.com.sheen.data.model.Classroom
 import ph.com.sheen.data.model.createClassroom
 import ph.com.sheen.designsystem.SwipeableContainer
+import ph.com.sheen.designsystem.disableSplitMotionEvents
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
@@ -180,7 +181,7 @@ class DashboardComponent {
         onMoreTapped: (Classroom) -> Unit = {},
         onSwipeDelete: (Classroom) -> Unit = {},
     ) {
-        LazyColumn(modifier = modifier) {
+        LazyColumn(modifier = modifier.disableSplitMotionEvents()) {
             items(
                 items = classrooms,
                 key = { it.id }
