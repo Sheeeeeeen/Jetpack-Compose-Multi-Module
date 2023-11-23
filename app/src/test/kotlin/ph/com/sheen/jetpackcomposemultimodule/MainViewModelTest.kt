@@ -49,8 +49,11 @@ class MainViewModelTest {
     @Test
     fun `test viewmodel to retrieve start destination if user is not yet logged in`() =
         runBlocking {
-            val route = viewModel.mainUiState.value.startDestination
-            assertTrue(route == loginNavigationRoute)
+            viewModel.mainUiState.test {
+                val uiState = awaitItem()
+                val route = uiState.startDestination
+                assertTrue(route == loginNavigationRoute)
+            }
         }
 
     @Test
