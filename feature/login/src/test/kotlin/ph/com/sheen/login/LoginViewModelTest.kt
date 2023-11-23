@@ -59,7 +59,7 @@ class LoginViewModelTest {
             viewModel.login()
             viewModel.uiState.test {
                 val result = awaitItem()
-                assertTrue(result.isLoading.not())
+                assertTrue(result.isLoading)
             }
         }
     }

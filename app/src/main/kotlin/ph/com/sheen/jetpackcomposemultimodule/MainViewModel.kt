@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.take
 import ph.com.sheen.dashboard.dashboardNavigationRoute
 import ph.com.sheen.datastore.UserDataStore
 import ph.com.sheen.login.loginNavigationRoute

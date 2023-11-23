@@ -1,6 +1,7 @@
 package ph.com.sheen.login
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -39,9 +40,7 @@ fun LoginScreen(uiState: LoginUIState, onLoginClick: () -> Unit) {
                 modifier = Modifier.align(Alignment.BottomCenter).padding(12.dp),
                 onClick = onLoginClick
             )
-            //TODO add smooth animation to show loading screen
-            //Crashing on a32 device
-            AnimatedVisibility(visible = uiState.isLoading) {
+            AnimatedVisibility(visible = uiState.isLoading, enter = fadeIn()) {
                 LoadingSpinner(modifier = Modifier.align(alignment = Alignment.Center))
             }
         }

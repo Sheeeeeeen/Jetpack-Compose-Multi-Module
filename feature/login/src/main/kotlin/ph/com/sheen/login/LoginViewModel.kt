@@ -26,16 +26,9 @@ class LoginViewModel @Inject constructor(private val userDataStore: UserDataStor
         }
     }
 
-    private fun setUiStateToNotLoading() {
-        _uiState.update {
-            it.copy(isLoading = false)
-        }
-    }
-
     suspend fun login() {
         setUiStateToLoading()
-        delay(3000)
-        setUiStateToNotLoading()
+        delay(2000L)
         setUserLoggedInStatus(userLoginStatus = LoginStatus.Successful)
     }
 

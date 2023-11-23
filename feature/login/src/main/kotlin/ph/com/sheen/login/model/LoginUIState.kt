@@ -6,8 +6,8 @@ data class LoginUIState(
 )
 
 sealed interface LoginStatus {
-    object UserNotLoggedIn : LoginStatus
-    object Successful : LoginStatus
+    data object UserNotLoggedIn : LoginStatus
+    data object Successful : LoginStatus
 
     fun LoginStatus.isSuccessful(): Boolean {
         return this == Successful
