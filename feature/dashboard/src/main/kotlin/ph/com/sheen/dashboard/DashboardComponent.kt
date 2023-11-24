@@ -157,7 +157,7 @@ class DashboardComponent {
                     )
                 }
                 Text(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier.weight(1f).padding(horizontal = 8.dp),
                     text = classroomUi.classroomName.value,
                     style = MaterialTheme.typography.titleSmall,
                     color = MaterialTheme.colorScheme.onSurface
