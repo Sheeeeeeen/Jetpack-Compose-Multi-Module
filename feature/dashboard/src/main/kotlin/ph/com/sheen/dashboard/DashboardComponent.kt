@@ -24,6 +24,7 @@ import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -39,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ph.com.sheen.dashboard.model.ClassroomUi
@@ -135,7 +137,7 @@ class DashboardComponent {
                 modifier = modifier1
                     .clickable { }
                     .background(color = MaterialTheme.colorScheme.surface)
-                    .padding(vertical = 8.dp, horizontal = 16.dp),
+                    .padding(vertical = 16.dp, horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
@@ -160,16 +162,15 @@ class DashboardComponent {
                     modifier = Modifier.weight(1f).padding(horizontal = 8.dp),
                     text = classroomUi.classroomName.value,
                     style = MaterialTheme.typography.titleSmall,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-                //TODO replace the action using swipe
-                Icon(
-                    modifier = Modifier.clickable { onMoreTapped() },
-                    imageVector = Icons.Outlined.MoreVert,
-                    contentDescription = "icon",
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
+            HorizontalDivider(
+                modifier = Modifier.align(alignment = Alignment.BottomCenter)
+                    .padding(start = 16.dp, end = 24.dp)
+            )
         }
 
     }
