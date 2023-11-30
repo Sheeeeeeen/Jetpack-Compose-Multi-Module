@@ -40,7 +40,13 @@ fun SwipeableContainer(
                 }
             },
             animationSpec = tween()
-        )
+        ).apply {
+            updateAnchors(
+                DraggableAnchors {
+                    DragAnchors.Default at 0f
+                }
+            )
+        }
     }
 
     Box(
