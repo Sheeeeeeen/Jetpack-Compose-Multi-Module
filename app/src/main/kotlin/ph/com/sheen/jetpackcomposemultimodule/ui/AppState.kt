@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import ph.com.sheen.dashboard.dashboardNavigationRoute
 import ph.com.sheen.jetpackcomposemultimodule.MainUiState
 import ph.com.sheen.jetpackcomposemultimodule.navigation.TopLevelDestination
+import ph.com.sheen.login.loginNavigationRoute
 
 
 @Composable
@@ -40,4 +41,8 @@ class AppState(
         }
 
     val startDestination = mainUiState.startDestination
+
+    val topLevelDestination: List<TopLevelDestination> = TopLevelDestination.entries.toList()
+
+    val isShowBottomBar = startDestination != loginNavigationRoute
 }
