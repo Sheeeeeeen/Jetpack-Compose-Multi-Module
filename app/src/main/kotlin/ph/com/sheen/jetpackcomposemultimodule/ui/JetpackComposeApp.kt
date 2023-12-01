@@ -12,7 +12,12 @@ fun JetpackComposeApp(
     mainUiState: MainUiState,
     appState: AppState = rememberAppState(mainUiState = mainUiState),
 ) {
-    Scaffold() {
+    Scaffold(
+        modifier = Modifier,
+        bottomBar = {
+
+        }
+    ) {
         AppNavHost(
             modifier = Modifier.padding(it),
             navController = appState.navController,

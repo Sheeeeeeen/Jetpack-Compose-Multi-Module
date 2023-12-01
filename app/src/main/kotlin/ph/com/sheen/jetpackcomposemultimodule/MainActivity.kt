@@ -7,6 +7,8 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
@@ -21,16 +23,22 @@ import ph.com.sheen.jetpackcomposemultimodule.ui.JetpackComposeApp
 class MainActivity : ComponentActivity() {
 
     private val viewModel by viewModels<MainViewModel>()
+
+    private var isLoading: Boolean by mutableStateOf(true)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val splashScreen = installSplashScreen()
         lifecycleScope.launch {
             viewModel.mainUiState.collect {
-                splashScreen.setKeepOnScreenCondition {
-                    it.keepScreenShowing
-                }
+                isLoading = it.keepScreenShowing
             }
         }
+
+        splashScreen.setKeepOnScreenCondition {
+            isLoading
+        }
+
         setContent {
             JetpackComposeMultiModuleTheme {
                 val uiState by viewModel.mainUiState.collectAsState()
