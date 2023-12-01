@@ -1,4 +1,4 @@
-package ph.com.sheen.jetpackcomposemultimodule
+package ph.com.sheen.jetpackcomposemultimodule.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
