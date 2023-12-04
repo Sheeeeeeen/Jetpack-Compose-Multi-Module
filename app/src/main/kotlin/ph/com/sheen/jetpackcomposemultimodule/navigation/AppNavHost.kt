@@ -10,6 +10,7 @@ import ph.com.sheen.dashboard.navigateToDashboardScreen
 import ph.com.sheen.login.loginGraph
 import ph.com.sheen.login.loginNavigationRoute
 import ph.com.sheen.notification.notificationGraph
+import ph.com.sheen.profile.profileGraph
 
 @Composable
 fun AppNavHost(
@@ -33,6 +34,7 @@ fun AppNavHost(
             nestedGraphs = { /** add login graph here  **/ }
         )
         dashboardGraph(nestedGraphs = { /** add dashboard graph here  **/ })
-        notificationGraph(nestedGraphs = {})
+        notificationGraph {}
+        profileGraph {}
     }
 }

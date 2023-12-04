@@ -16,6 +16,8 @@ import ph.com.sheen.jetpackcomposemultimodule.navigation.TopLevelDestination
 import ph.com.sheen.login.loginNavigationRoute
 import ph.com.sheen.notification.navigateToNotificationScreen
 import ph.com.sheen.notification.notificationNavigationRoute
+import ph.com.sheen.profile.navigateToProfileScreen
+import ph.com.sheen.profile.profileNavigationRoute
 
 
 @Composable
@@ -35,14 +37,14 @@ class AppState(
 ) {
 
     val currentDestination: NavDestination?
-        @Composable get() = navController
-            .currentBackStackEntryAsState().value?.destination
+        @Composable get() = navController.currentBackStackEntryAsState().value?.destination
 
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() = when (currentDestination?.route) {
             dashboardNavigationRoute -> TopLevelDestination.DASHBOARD
             notificationNavigationRoute -> TopLevelDestination.NOTIFICATION
+            profileNavigationRoute -> TopLevelDestination.PROFILE
             else -> null
         }
 
@@ -68,9 +70,15 @@ class AppState(
         }
 
         when (topLevelDestination) {
-            TopLevelDestination.DASHBOARD -> navController.navigateToDashboardScreen()
-            TopLevelDestination.NOTIFICATION -> navController.navigateToNotificationScreen()
-            TopLevelDestination.DASHBOARD3 -> Unit
+            TopLevelDestination.DASHBOARD -> navController.navigateToDashboardScreen(
+                topLevelNavOptions
+            )
+
+            TopLevelDestination.NOTIFICATION -> navController.navigateToNotificationScreen(
+                topLevelNavOptions
+            )
+
+            TopLevelDestination.PROFILE -> navController.navigateToProfileScreen(topLevelNavOptions)
         }
     }
 }
