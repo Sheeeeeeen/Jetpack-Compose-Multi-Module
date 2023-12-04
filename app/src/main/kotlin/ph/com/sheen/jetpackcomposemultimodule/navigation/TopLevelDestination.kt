@@ -2,6 +2,7 @@ package ph.com.sheen.jetpackcomposemultimodule.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 import ph.com.sheen.designsystem.icon.AppIcons
+import ph.com.sheen.notification.R as notifR
 import ph.com.sheen.dashboard.R as dashR
 
 enum class TopLevelDestination(
@@ -17,11 +18,11 @@ enum class TopLevelDestination(
         titleTextId = dashR.string.dashboard,
     ),
 
-    DASHBOARD2(
-        selectedIcon = AppIcons.Home,
-        unselectedIcon = AppIcons.HomeBorder,
-        iconTextId = dashR.string.dashboard,
-        titleTextId = dashR.string.dashboard,
+    NOTIFICATION(
+        selectedIcon = AppIcons.Notification,
+        unselectedIcon = AppIcons.NotificationBorder,
+        iconTextId = notifR.string.notification,
+        titleTextId = notifR.string.notification,
     ),
 
     DASHBOARD3(

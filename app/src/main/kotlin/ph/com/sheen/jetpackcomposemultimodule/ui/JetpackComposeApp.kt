@@ -27,7 +27,7 @@ fun JetpackComposeApp(
                 return@Scaffold
             JetpackBottomBar(
                 destinations = appState.topLevelDestination,
-                onNavigateToDestination = {},
+                onNavigateToDestination = appState::navigateToTopLevelDestination,
                 currentDestination = appState.currentDestination
             )
         }
@@ -53,7 +53,7 @@ private fun JetpackBottomBar(
             JetpackNavigationBarItem(
                 modifier = Modifier,
                 selected = selected,
-                onClick = {},
+                onClick = { onNavigateToDestination(destination) },
                 icon = {
                     Icon(
                         imageVector = destination.unselectedIcon,

@@ -63,6 +63,7 @@ dependencies {
     implementation(project(mapOf("path" to ":core:datastore")))
     implementation(project(mapOf("path" to ":feature:login")))
     implementation(project(mapOf("path" to ":feature:dashboard")))
+    implementation(project(mapOf("path" to ":feature:notification")))
 
     implementation(libs.core.ktx)
     implementation(libs.lifecycle.runtime.ktx)
