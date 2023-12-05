@@ -1,10 +1,13 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 
 package ph.com.sheen.dashboard.dialog
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.text2.BasicTextField2
+import androidx.compose.foundation.text2.input.rememberTextFieldState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -73,17 +76,26 @@ class CreateClassroomComponent {
     }
 
     @Composable
-    fun CategoryField() {
-        TODO()
+    fun CategoryField(modifier: Modifier = Modifier) {
+        BasicTextField2(
+            modifier = modifier.testTag("category_field_tag"),
+            state = rememberTextFieldState()
+        )
     }
 
     @Composable
-    fun CourseNameField() {
-        TODO()
+    fun CourseNameField(modifier: Modifier = Modifier) {
+        BasicTextField2(
+            modifier = modifier.testTag("course_name_field_tag"),
+            state = rememberTextFieldState()
+        )
     }
 
     @Composable
-    fun YearLevelField() {
-        TODO()
+    fun YearLevelField(modifier: Modifier = Modifier) {
+        BasicTextField2(
+            modifier = modifier.testTag("year_level_field_tag"),
+            state = rememberTextFieldState()
+        )
     }
 }
