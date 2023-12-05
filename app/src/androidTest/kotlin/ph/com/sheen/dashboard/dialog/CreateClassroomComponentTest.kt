@@ -30,5 +30,6 @@ class CreateClassroomComponentTest {
 
         //save button
         composeTestRule.onNodeWithTag(testTag = "save_button")
+        composeTestRule.onNodeWithText(text = "Save")
     }
 }
