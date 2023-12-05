@@ -13,6 +13,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
+import ph.com.sheen.dashboard.R
 
 @Composable
 fun BuildCreateClassroomScreen(
@@ -27,21 +29,24 @@ class CreateClassroomComponent {
     @Composable
     fun AppBar(onTappedClose: () -> Unit = {}, onTappedSave: () -> Unit = {}) {
         TopAppBar(
-            title = { Text(text = "Create new classroom") },
+            title = { Text(text = stringResource(R.string.create_new_classroom)) },
             navigationIcon = {
                 IconButton(
-                    modifier = Modifier.testTag("close_button"),
+                    modifier = Modifier.testTag(stringResource(R.string.close_button_test_tag)),
                     onClick = onTappedClose
                 ) {
-                    Icon(imageVector = Icons.Default.Close, contentDescription = "close_button")
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = stringResource(R.string.close_button_description)
+                    )
                 }
             },
             actions = {
                 TextButton(
-                    modifier = Modifier.testTag(tag = "save_button"),
+                    modifier = Modifier.testTag(tag = stringResource(R.string.save_button_test_tag)),
                     onClick = onTappedSave
                 ) {
-                    Text(text = "Save")
+                    Text(text = stringResource(R.string.save_button_title))
                 }
             }
         )

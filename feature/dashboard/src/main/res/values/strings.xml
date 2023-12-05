@@ -1,0 +1,10 @@
+<resources>
+    <string name="dashboard">Dashboard</string>
+
+    <!--    create classroom dialog-->
+    <string name="create_new_classroom">Create new classroom</string>
+    <string name="close_button_test_tag">close_button</string>
+    <string name="close_button_description">close_button</string>
+    <string name="save_button_test_tag">save_button</string>
+    <string name="save_button_title">Save</string>
+</resources>
