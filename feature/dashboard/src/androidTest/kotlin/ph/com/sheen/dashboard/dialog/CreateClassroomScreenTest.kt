@@ -7,8 +7,9 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import org.junit.Rule
 import org.junit.Test
+import ph.com.sheen.dashboard.dialog.BuildCreateClassroomScreen
 
-class CreateClassroomComponentTest {
+class CreateClassroomScreenTest {
 
     @get:Rule
     val composeTestRule = createComposeRule()

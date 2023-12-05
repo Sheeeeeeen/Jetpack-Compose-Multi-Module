@@ -49,6 +49,7 @@ android {
 dependencies {
 
     implementation(project(mapOf("path" to ":core:designsystem")))
+    implementation(project(mapOf("path" to ":data")))
 
     implementation(platform(libs.compose.bom))
     implementation(libs.ui)
@@ -58,7 +59,6 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.bundles.navigation)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(project(mapOf("path" to ":data")))
     implementation(libs.androidx.core.ktx)
 
     debugImplementation(libs.ui.tooling)
