@@ -7,7 +7,6 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import org.junit.Rule
 import org.junit.Test
-import ph.com.sheen.dashboard.dialog.BuildCreateClassroomScreen
 
 class CreateClassroomScreenTest {
 
@@ -18,7 +17,14 @@ class CreateClassroomScreenTest {
     fun test_top_app_bar_with_close_button_title_and_save_button() {
         composeTestRule.setContent {
             BuildCreateClassroomScreen {
-                AppBar()
+                Container {
+                    AppBar()
+                    MainContent {
+                        CategoryField()
+                        CourseNameField()
+                        YearLevelField()
+                    }
+                }
             }
         }
         //close button

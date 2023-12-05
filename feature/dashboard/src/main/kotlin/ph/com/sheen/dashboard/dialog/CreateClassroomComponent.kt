@@ -2,8 +2,8 @@
 
 package ph.com.sheen.dashboard.dialog
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -30,8 +30,8 @@ fun BuildCreateClassroomScreen(
 class CreateClassroomComponent {
 
     @Composable
-    fun Container(modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
-        Box(modifier = modifier.fillMaxSize()) {
+    fun Container(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+        Column(modifier = modifier.fillMaxSize()) {
             content()
         }
     }
@@ -65,5 +65,25 @@ class CreateClassroomComponent {
                 }
             }
         )
+    }
+
+    @Composable
+    fun MainContent(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+        Column(modifier = modifier, content = content)
+    }
+
+    @Composable
+    fun CategoryField() {
+        TODO()
+    }
+
+    @Composable
+    fun CourseNameField() {
+        TODO()
+    }
+
+    @Composable
+    fun YearLevelField() {
+        TODO()
     }
 }
