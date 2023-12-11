@@ -5,6 +5,7 @@ package ph.com.sheen.dashboard.dialog
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -143,8 +144,16 @@ class CreateClassroomComponent {
 
     @Composable
     fun SaveButton(modifier: Modifier = Modifier, onTappedSave: () -> Unit = {}) {
-        TextButton(modifier = modifier.testTag("text_save_button_tag"), onClick = onTappedSave) {
-            Text(text = "Save")
+        TextButton(
+            modifier = modifier.fillMaxWidth().testTag("text_save_button_tag"),
+            onClick = onTappedSave
+        ) {
+            Text(text = "SAVE")
         }
+    }
+
+    @Composable
+    fun ColumnScope.FillUpSpace(modifier: Modifier = Modifier) {
+        Spacer(modifier = modifier.weight(1f))
     }
 }

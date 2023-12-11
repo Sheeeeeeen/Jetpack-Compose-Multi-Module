@@ -24,6 +24,7 @@ fun CreateClassroomScreen(modifier: Modifier = Modifier) {
                 CategoryField()
                 CourseNameField()
                 YearLevelField()
+                FillUpSpace()
                 SaveButton()
             }
         }
