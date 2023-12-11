@@ -18,16 +18,7 @@ class CreateClassroomScreenTest {
     @Test
     fun test_top_app_bar_with_close_button_title_and_save_button() {
         composeTestRule.setContent {
-            BuildCreateClassroomScreen {
-                Container {
-                    AppBar()
-                    MainContent {
-                        CategoryField()
-                        CourseNameField()
-                        YearLevelField()
-                    }
-                }
-            }
+            CreateClassroomScreen()
         }
         //close button
         composeTestRule.onNodeWithTag(testTag = "close_button").assertIsDisplayed()
@@ -43,5 +34,6 @@ class CreateClassroomScreenTest {
         composeTestRule.onNodeWithTag(testTag = "category_field_tag").assertIsDisplayed()
         composeTestRule.onNodeWithTag(testTag = "course_name_field_tag").assertIsDisplayed()
         composeTestRule.onNodeWithTag(testTag = "year_level_field_tag").assertIsDisplayed()
+        composeTestRule.onNodeWithTag(testTag = "text_save_button_tag").assertIsDisplayed()
     }
 }

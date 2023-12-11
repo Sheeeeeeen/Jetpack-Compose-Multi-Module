@@ -18,12 +18,13 @@ fun CreateClassroomRoute() {
 @Composable
 fun CreateClassroomScreen(modifier: Modifier = Modifier) {
     BuildCreateClassroomScreen {
-        Container(modifier = Modifier.padding(16.dp)) {
+        Container() {
             AppBar()
-            MainContent(modifier = Modifier) {
+            MainContent(modifier = Modifier.padding(16.dp)) {
                 CategoryField()
                 CourseNameField()
                 YearLevelField()
+                SaveButton()
             }
         }
     }
