@@ -21,7 +21,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Menu
-import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -52,7 +51,7 @@ import ph.com.sheen.designsystem.disableSplitMotionEvents
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
-fun BuildLoginScreen(
+fun BuildDashboardScreen(
     block: @Composable DashboardComponent.() -> Unit = {},
 ) {
     val typeSafeScreen = DashboardComponent()
@@ -220,7 +219,7 @@ class DashboardComponent {
 @Composable
 private fun PreviewClassroomItem() {
     AppPreview {
-        BuildLoginScreen {
+        BuildDashboardScreen {
             ClassroomItem(
                 modifier = Modifier,
                 classroomUi = createClassroom().toUiModel()
@@ -233,7 +232,7 @@ private fun PreviewClassroomItem() {
 @Composable
 private fun PreviewScreen() {
     AppPreview {
-        BuildLoginScreen {
+        BuildDashboardScreen {
             Container(topAppBar = { AppBar() }) {
                 LazyColumn(
                     modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground)

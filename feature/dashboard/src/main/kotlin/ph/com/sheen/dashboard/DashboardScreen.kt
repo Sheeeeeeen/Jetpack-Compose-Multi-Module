@@ -35,8 +35,9 @@ fun DashboardScreen(
 ) {
     val scope = rememberCoroutineScope()
 
-    BuildLoginScreen {
+    BuildDashboardScreen {
         Container(
+            modifier = modifier,
             topAppBar = { AppBar(onNotificationTapped = onNotificationTapped) }
         ) {
             val listOfClassroom = uiState.classrooms
