@@ -142,7 +142,9 @@ class CreateClassroomComponent {
     }
 
     @Composable
-    fun SaveButton(modifier: Modifier = Modifier) {
-        TODO("Add item")
+    fun SaveButton(modifier: Modifier = Modifier, onTappedSave: () -> Unit = {}) {
+        TextButton(modifier = modifier.testTag("text_save_button_tag"), onClick = onTappedSave) {
+            Text(text = "Save")
+        }
     }
 }

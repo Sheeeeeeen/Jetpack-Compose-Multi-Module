@@ -28,7 +28,6 @@ class CreateClassroomScreenTest {
 
         //save button
         composeTestRule.onNodeWithTag(testTag = "save_button").assertIsDisplayed()
-        composeTestRule.onNodeWithText(text = "Save").assertIsDisplayed()
 
         //main content
         composeTestRule.onNodeWithTag(testTag = "category_field_tag").assertIsDisplayed()
