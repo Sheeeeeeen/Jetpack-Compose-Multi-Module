@@ -7,6 +7,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ph.com.sheen.dashboard.model.DashboardUiState
@@ -32,8 +33,8 @@ fun DashboardScreen(
     onNotificationTapped: () -> Unit = {},
     onMoreTapped: (Classroom) -> Unit = {},
     onSwipeDelete: (Classroom) -> Unit = {},
+    scope: CoroutineScope = rememberCoroutineScope(),
 ) {
-    val scope = rememberCoroutineScope()
 
     BuildDashboardScreen {
         Container(
