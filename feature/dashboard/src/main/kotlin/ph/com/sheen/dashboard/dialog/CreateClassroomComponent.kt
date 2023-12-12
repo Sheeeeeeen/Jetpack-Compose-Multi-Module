@@ -2,6 +2,7 @@
 
 package ph.com.sheen.dashboard.dialog
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -21,12 +22,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import ph.com.sheen.dashboard.R
 import ph.com.sheen.dashboard.dropdown.CategoryDropdownScreen
+import ph.com.sheen.dashboard.dropdown.SelectionCategory
 
 @Composable
 fun BuildCreateClassroomScreen(
@@ -77,11 +83,26 @@ class CreateClassroomComponent {
     @Composable
     fun CategoryDropdownField(
         modifier: Modifier = Modifier,
-        onValueChanged: (String) -> Unit = {},
-        value: String = "",
-        items: List<String> = listOf("Kinder", "Junior High", "Senior High", "College"),
+        onCategorySelected: (String) -> Unit = {},
+        categoryItems: List<String> = SelectionCategory.entries.map { it.value },
     ) {
-        CategoryDropdownScreen(modifier = modifier.testTag("category_dropdown_menu_field_tag"))
+
+        var selectedCategory by rememberSaveable { mutableStateOf(categoryItems[0]) }
+
+        var expanded by rememberSaveable { mutableStateOf(false) }
+
+        CategoryDropdownScreen(
+            modifier = modifier.testTag("category_dropdown_menu_field_tag"),
+            value = selectedCategory,
+            items = categoryItems,
+            expanded = expanded,
+            label = { Text("Classroom Name") },
+            onItemSelected = {
+                selectedCategory = it
+                onCategorySelected(it)
+            },
+            onExpanded = { expanded = it }
+        )
     }
 
     @Composable
@@ -89,17 +110,20 @@ class CreateClassroomComponent {
         modifier: Modifier = Modifier,
         onValueChanged: (String) -> Unit = {},
         value: String = "",
+        isVisible: Boolean,
     ) {
-        OutlinedTextField(
-            value = value,
-            onValueChange = onValueChanged,
-            modifier = modifier.fillMaxWidth().testTag("course_name_field_tag"),
-            textStyle = MaterialTheme.typography.bodyLarge,
-            label = {
-                Text("Course Name")
-            },
-            singleLine = true,
-        )
+        AnimatedVisibility(visible = isVisible) {
+            OutlinedTextField(
+                value = value,
+                onValueChange = onValueChanged,
+                modifier = modifier.fillMaxWidth().testTag("course_name_field_tag"),
+                textStyle = MaterialTheme.typography.bodyLarge,
+                label = {
+                    Text("Course Name")
+                },
+                singleLine = true,
+            )
+        }
     }
 
     @Composable

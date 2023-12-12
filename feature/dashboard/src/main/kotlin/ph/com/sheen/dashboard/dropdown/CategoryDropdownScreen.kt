@@ -11,10 +11,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import ph.com.sheen.designsystem.theme.ui.AppPreview
@@ -22,27 +18,26 @@ import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
 fun CategoryDropdownScreen(
+    value: String,
+    items: List<String>,
+    label: @Composable () -> Unit,
     modifier: Modifier = Modifier,
-    value: String = "",
-    items: List<String> = listOf("Kinder", "Junior High", "Senior High", "College"),
+    expanded: Boolean = false,
+    onItemSelected: (String) -> Unit = {},
+    onExpanded: (Boolean) -> Unit = {},
 ) {
-    var selection by remember { mutableStateOf(items[0]) }
-
-    var expanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
         modifier = modifier.fillMaxWidth(),
         expanded = expanded,
-        onExpandedChange = { expanded = expanded.not() }
+        onExpandedChange = { onExpanded(expanded.not()) }
     ) {
         OutlinedTextField(
-            value = selection,
+            value = value,
             onValueChange = {},
             modifier = Modifier.fillMaxWidth().menuAnchor(),
             textStyle = MaterialTheme.typography.bodyLarge,
-            label = {
-                Text("Classroom Name")
-            },
+            label = label,
             singleLine = true,
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
@@ -51,14 +46,14 @@ fun CategoryDropdownScreen(
         )
         ExposedDropdownMenu(
             expanded = expanded,
-            onDismissRequest = { expanded = false }
+            onDismissRequest = { onExpanded(false) }
         ) {
             items.forEach {
                 DropdownMenuItem(
                     text = { Text(it) },
                     onClick = {
-                        selection = it
-                        expanded = false
+                        onItemSelected(it)
+                        onExpanded(false)
                     },
                     contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
                 )
@@ -71,6 +66,14 @@ fun CategoryDropdownScreen(
 @Composable
 private fun CategoryDropdownScreenPreview() {
     AppPreview {
-        CategoryDropdownScreen()
+        val items = SelectionCategory.entries.map { it.value }
+        CategoryDropdownScreen(
+            value = "Sample",
+            items = items,
+            expanded = true,
+            label = {
+                Text("Classroom Name")
+            }
+        )
     }
 }

@@ -23,7 +23,6 @@ fun DashboardRoute(viewModel: DashboardViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     DashboardScreen(
         uiState = uiState,
-        onNotificationTapped = { },
         onSwipeDelete = viewModel::deleteClassroom,
         onMoreTapped = viewModel::deleteClassroom,
     )
@@ -33,7 +32,6 @@ fun DashboardRoute(viewModel: DashboardViewModel = hiltViewModel()) {
 fun DashboardScreen(
     modifier: Modifier = Modifier,
     uiState: DashboardUiState,
-    onNotificationTapped: () -> Unit = {},
     onMoreTapped: (Classroom) -> Unit = {},
     onSwipeDelete: (Classroom) -> Unit = {},
     scope: CoroutineScope = rememberCoroutineScope(),
@@ -57,7 +55,9 @@ fun DashboardScreen(
                 })
 
             if (openCreateClassroomDialog) {
-                CreateClassroomDialog(onDismissRequest = { openCreateClassroomDialog = false })
+                CreateClassroomDialog(
+                    onDismissRequest = { openCreateClassroomDialog = false },
+                )
             }
         }
     }
