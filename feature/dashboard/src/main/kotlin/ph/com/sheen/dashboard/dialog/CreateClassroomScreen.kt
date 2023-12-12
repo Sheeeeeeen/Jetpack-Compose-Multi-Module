@@ -18,15 +18,15 @@ fun CreateClassroomDialog(onDismissRequest: () -> Unit) {
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
-        CreateClassroomScreen()
+        CreateClassroomScreen(onTappedClose = onDismissRequest)
     }
 }
 
 @Composable
-fun CreateClassroomScreen(modifier: Modifier = Modifier) {
+fun CreateClassroomScreen(modifier: Modifier = Modifier, onTappedClose: () -> Unit = {}) {
     BuildCreateClassroomScreen {
         Container(modifier = modifier) {
-            AppBar()
+            AppBar(onTappedClose = onTappedClose)
             MainContent(modifier = Modifier.padding(16.dp)) {
                 CategoryField()
                 CourseNameField()
