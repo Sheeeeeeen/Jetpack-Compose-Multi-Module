@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -39,8 +40,10 @@ class CreateClassroomComponent {
 
     @Composable
     fun Container(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
-        Column(modifier = modifier.fillMaxSize()) {
-            content()
+        Surface(modifier = modifier) {
+            Column(modifier = Modifier.fillMaxSize()) {
+                content()
+            }
         }
     }
 

@@ -3,13 +3,17 @@ package ph.com.sheen.dashboard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ph.com.sheen.dashboard.dialog.CreateClassroomDialog
 import ph.com.sheen.dashboard.model.DashboardUiState
 import ph.com.sheen.data.model.Classroom
 import ph.com.sheen.data.model.createClassroom
@@ -36,14 +40,13 @@ fun DashboardScreen(
     scope: CoroutineScope = rememberCoroutineScope(),
 ) {
 
+    var openCreateClassroomDialog by remember { mutableStateOf(false) }
+
     BuildDashboardScreen {
-        Container(
-            modifier = modifier,
-            topAppBar = { AppBar(onNotificationTapped = onNotificationTapped) }
-        ) {
+        Container(modifier = modifier,
+            topAppBar = { AppBar(onNotificationTapped = { openCreateClassroomDialog = true }) }) {
             val listOfClassroom = uiState.classrooms
-            ClassroomList(
-                modifier = Modifier,
+            ClassroomList(modifier = Modifier,
                 classrooms = listOfClassroom,
                 onMoreTapped = onMoreTapped,
                 onSwipeDelete = {
@@ -52,8 +55,11 @@ fun DashboardScreen(
                         delay(1000L)
                         onSwipeDelete(it)
                     }
-                }
-            )
+                })
+
+            if (openCreateClassroomDialog) {
+                CreateClassroomDialog(onDismissRequest = { openCreateClassroomDialog = false })
+            }
         }
     }
 }
