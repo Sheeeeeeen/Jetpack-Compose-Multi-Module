@@ -11,9 +11,8 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import ph.com.sheen.database.dao.ClassroomDao
-import ph.com.sheen.database.entity.ClassroomEntity
+import ph.com.sheen.database.util.createClassroomEntity
 import java.io.IOException
-import java.util.UUID
 
 @RunWith(RobolectricTestRunner::class)
 class AppDatabaseTest {
@@ -44,12 +43,6 @@ class AppDatabaseTest {
         val result = classroomDao.insert(classroomEntity = classroomEntity)
 
         assertTrue(result == 1L)
-    }
-
-    private fun createClassroomEntity(): ClassroomEntity {
-        val id = UUID.randomUUID()
-        val updateDate = System.currentTimeMillis()
-        return ClassroomEntity(id = id, lastUpdateDate = updateDate)
     }
 
     //retrieve entity by id
