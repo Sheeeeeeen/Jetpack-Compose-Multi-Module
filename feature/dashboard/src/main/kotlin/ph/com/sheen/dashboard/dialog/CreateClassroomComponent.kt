@@ -26,7 +26,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import ph.com.sheen.dashboard.R
-import ph.com.sheen.dashboard.dropdown.CategoryDropdownRoute
+import ph.com.sheen.dashboard.dropdown.CategoryDropdownScreen
 
 @Composable
 fun BuildCreateClassroomScreen(
@@ -81,7 +81,7 @@ class CreateClassroomComponent {
         value: String = "",
         items: List<String> = listOf("Kinder", "Junior High", "Senior High", "College"),
     ) {
-        CategoryDropdownRoute()
+        CategoryDropdownScreen(modifier = modifier.testTag("category_dropdown_menu_field_tag"))
     }
 
     @Composable

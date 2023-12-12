@@ -16,14 +16,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
-@Composable
-fun CategoryDropdownRoute() {
-    CategoryDropdownScreen()
-}
 
 @Composable
 fun CategoryDropdownScreen(
@@ -32,16 +27,18 @@ fun CategoryDropdownScreen(
     items: List<String> = listOf("Kinder", "Junior High", "Senior High", "College"),
 ) {
     var selection by remember { mutableStateOf(items[0]) }
+
     var expanded by remember { mutableStateOf(false) }
 
     ExposedDropdownMenuBox(
+        modifier = modifier.fillMaxWidth(),
         expanded = expanded,
         onExpandedChange = { expanded = expanded.not() }
     ) {
         OutlinedTextField(
             value = selection,
             onValueChange = {},
-            modifier = modifier.fillMaxWidth().menuAnchor().testTag("category_field_tag"),
+            modifier = Modifier.fillMaxWidth().menuAnchor(),
             textStyle = MaterialTheme.typography.bodyLarge,
             label = {
                 Text("Classroom Name")

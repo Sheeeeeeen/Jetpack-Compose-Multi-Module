@@ -27,7 +27,7 @@ class CreateClassroomScreenTest {
         composeTestRule.onNodeWithText(text = "Create new classroom").assertIsDisplayed()
 
         //main content
-        composeTestRule.onNodeWithTag(testTag = "category_field_tag").assertIsDisplayed()
+        composeTestRule.onNodeWithTag(testTag = "category_dropdown_menu_field_tag").assertIsDisplayed()
         composeTestRule.onNodeWithTag(testTag = "course_name_field_tag").assertIsDisplayed()
         composeTestRule.onNodeWithTag(testTag = "year_level_field_tag").assertIsDisplayed()
         composeTestRule.onNodeWithTag(testTag = "text_save_button_tag").assertIsDisplayed()
