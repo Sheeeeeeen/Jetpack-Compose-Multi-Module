@@ -1,18 +1,18 @@
 package ph.com.sheen.designsystem.icon
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.ExitToApp
-import androidx.compose.material.icons.automirrored.outlined.List
-import androidx.compose.material.icons.automirrored.outlined.Send
-import androidx.compose.material.icons.automirrored.rounded.ExitToApp
-import androidx.compose.material.icons.automirrored.rounded.List
-import androidx.compose.material.icons.automirrored.rounded.Send
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.outlined.ExitToApp
+import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.Send
+import androidx.compose.material.icons.rounded.ExitToApp
+import androidx.compose.material.icons.rounded.Send
 
 object AppIcons {
-    val Home = Icons.AutoMirrored.Rounded.List
-    val HomeBorder = Icons.AutoMirrored.Outlined.List
-    val Notification = Icons.AutoMirrored.Rounded.Send
-    val NotificationBorder = Icons.AutoMirrored.Outlined.Send
-    val profile = Icons.AutoMirrored.Rounded.ExitToApp
-    val profileBorder = Icons.AutoMirrored.Outlined.ExitToApp
+    val Home = Icons.Default.List
+    val HomeBorder = Icons.Outlined.List
+    val Notification = Icons.Rounded.Send
+    val NotificationBorder = Icons.Outlined.Send
+    val profile = Icons.Rounded.ExitToApp
+    val profileBorder = Icons.Outlined.ExitToApp
 }
