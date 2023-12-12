@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.core.text.isDigitsOnly
 import ph.com.sheen.dashboard.dropdown.SelectionCategory
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
@@ -38,6 +39,8 @@ fun CreateClassroomScreen(
     ) {
     var selectedCategory by rememberSaveable { mutableStateOf("") }
 
+    var level by rememberSaveable { mutableStateOf("") }
+
     val isCollegeSelected by derivedStateOf {
         selectedCategory == SelectionCategory.COLLEGE.value
     }
@@ -47,7 +50,13 @@ fun CreateClassroomScreen(
             MainContent(modifier = Modifier.padding(16.dp)) {
                 CategoryDropdownField(onCategorySelected = { selectedCategory = it })
                 CourseNameField(isVisible = isCollegeSelected)
-                YearLevelField()
+                YearLevelField(
+                    value = level,
+                    onValueChanged = {
+                        if (it.isDigitsOnly() && it.length <= 2)
+                            level = it
+                    }
+                )
                 FillUpSpace()
                 SaveButton()
             }
