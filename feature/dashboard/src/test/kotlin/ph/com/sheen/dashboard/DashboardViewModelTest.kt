@@ -16,6 +16,7 @@ import ph.com.sheen.dashboard.fake.FakeClassroomRepository
 import ph.com.sheen.data.ClassroomRepository
 import ph.com.sheen.data.model.Classroom
 import java.util.UUID
+import kotlin.random.Random
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class DashboardViewModelTest {
@@ -75,9 +76,21 @@ class DashboardViewModelTest {
         }
     }
 
-    private fun createClassroomModel(): Classroom {
+    private fun createClassroomModel(
+        category: String = UUID.randomUUID().toString(),
+        level: Byte = Random.nextBytes(10)[0],
+        courseName: String = UUID.randomUUID().toString(),
+        createdDate: Long = System.currentTimeMillis(),
+        lastUpdateDate: Long = System.currentTimeMillis(),
+    ): Classroom {
         val id = UUID.randomUUID()
-        val updateDate = System.currentTimeMillis()
-        return Classroom(id = id, lastUpdateDate = updateDate)
+        return Classroom(
+            id = id,
+            category = category,
+            level = level,
+            courseName = courseName,
+            createdDate = createdDate,
+            lastUpdateDate = lastUpdateDate
+        )
     }
 }

@@ -3,10 +3,10 @@ package ph.com.sheen.data
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import ph.com.sheen.data.model.Classroom
+import ph.com.sheen.data.model.toEntityModel
 import ph.com.sheen.data.model.toModel
 import ph.com.sheen.data.model.toModels
 import ph.com.sheen.database.dao.ClassroomDao
-import ph.com.sheen.database.entity.ClassroomEntity
 import java.util.UUID
 
 class DefaultClassroomRepository(private val dao: ClassroomDao) : ClassroomRepository {
@@ -18,18 +18,15 @@ class DefaultClassroomRepository(private val dao: ClassroomDao) : ClassroomRepos
     }
 
     override suspend fun saveClassroom(classroom: Classroom) {
-        val entity = ClassroomEntity(id = classroom.id, lastUpdateDate = classroom.lastUpdateDate)
-        dao.insert(classroomEntity = entity)
+        dao.insert(classroomEntity = classroom.toEntityModel())
     }
 
     override suspend fun deleteClassroom(classroom: Classroom) {
-        val entity = ClassroomEntity(id = classroom.id, lastUpdateDate = classroom.lastUpdateDate)
-        dao.deleteClassroom(classroomEntity = entity)
+        dao.deleteClassroom(classroomEntity = classroom.toEntityModel())
     }
 
     override suspend fun updateClassroom(classroom: Classroom) {
-        val entity = ClassroomEntity(id = classroom.id, lastUpdateDate = classroom.lastUpdateDate)
-        dao.updateClassroom(classroomEntity = entity)
+        dao.updateClassroom(classroomEntity = classroom.toEntityModel())
     }
 
     override suspend fun findClassroom(id: UUID): Classroom? {

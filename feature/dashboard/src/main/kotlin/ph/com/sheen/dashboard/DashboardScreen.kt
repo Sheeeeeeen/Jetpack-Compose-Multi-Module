@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 import ph.com.sheen.dashboard.dialog.CreateClassroomDialog
 import ph.com.sheen.dashboard.model.DashboardUiState
 import ph.com.sheen.data.model.Classroom
-import ph.com.sheen.data.model.createClassroom
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
@@ -24,7 +23,7 @@ fun DashboardRoute(viewModel: DashboardViewModel = hiltViewModel()) {
     val uiState by viewModel.uiState.collectAsState()
     DashboardScreen(
         uiState = uiState,
-        onNotificationTapped = { viewModel.saveClassroom(classroom = createClassroom()) },
+        onNotificationTapped = { },
         onSwipeDelete = viewModel::deleteClassroom,
         onMoreTapped = viewModel::deleteClassroom,
     )

@@ -222,7 +222,11 @@ private fun PreviewClassroomItem() {
         BuildDashboardScreen {
             ClassroomItem(
                 modifier = Modifier,
-                classroomUi = createClassroom().toUiModel()
+                classroomUi = createClassroom(
+                    category = "Grade",
+                    level = 1,
+                    courseName = ""
+                ).toUiModel()
             )
         }
     }
@@ -241,7 +245,11 @@ private fun PreviewScreen() {
                         item {
                             ClassroomItem(
                                 modifier = Modifier,
-                                classroomUi = createClassroom().toUiModel()
+                                classroomUi = createClassroom(
+                                    category = "Grade",
+                                    level = 1,
+                                    courseName = ""
+                                ).toUiModel()
                             )
                         }
                     }
