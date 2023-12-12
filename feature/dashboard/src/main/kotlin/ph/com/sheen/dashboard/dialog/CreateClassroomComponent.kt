@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -27,6 +26,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import ph.com.sheen.dashboard.R
+import ph.com.sheen.dashboard.dropdown.CategoryDropdownRoute
 
 @Composable
 fun BuildCreateClassroomScreen(
@@ -79,26 +79,9 @@ class CreateClassroomComponent {
         modifier: Modifier = Modifier,
         onValueChanged: (String) -> Unit = {},
         value: String = "",
+        items: List<String> = listOf("Kinder", "Junior High", "Senior High", "College"),
     ) {
-        OutlinedTextField(
-            value = value,
-            onValueChange = onValueChanged,
-            modifier = modifier.fillMaxWidth().testTag("category_field_tag"),
-            textStyle = MaterialTheme.typography.bodyLarge,
-            label = {
-                Text("Classroom Name")
-            },
-            singleLine = true,
-            trailingIcon = {
-                IconButton(onClick = {}) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = "arrow_drop_down"
-                    )
-                }
-            },
-            readOnly = true
-        )
+        CategoryDropdownRoute()
     }
 
     @Composable
