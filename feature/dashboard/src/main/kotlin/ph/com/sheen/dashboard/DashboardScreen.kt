@@ -1,5 +1,6 @@
 package ph.com.sheen.dashboard
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -57,6 +58,10 @@ fun DashboardScreen(
             if (openCreateClassroomDialog) {
                 CreateClassroomDialog(
                     onDismissRequest = { openCreateClassroomDialog = false },
+                    onTappedSave = {
+                        Log.d("Sheen", it.toString())
+                        openCreateClassroomDialog = false
+                    }
                 )
             }
         }

@@ -17,16 +17,21 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.text.isDigitsOnly
 import ph.com.sheen.dashboard.dropdown.SelectionCategory
+import ph.com.sheen.dashboard.model.SavedCreatedClassroom
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
 @Composable
-fun CreateClassroomDialog(onDismissRequest: () -> Unit) {
+fun CreateClassroomDialog(
+    onDismissRequest: () -> Unit,
+    onTappedSave: (SavedCreatedClassroom) -> Unit = {},
+) {
     Dialog(
         onDismissRequest = onDismissRequest,
         properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         CreateClassroomScreen(
-            onTappedClose = onDismissRequest
+            onTappedClose = onDismissRequest,
+            onTappedSave = onTappedSave
         )
     }
 }
@@ -35,30 +40,37 @@ fun CreateClassroomDialog(onDismissRequest: () -> Unit) {
 fun CreateClassroomScreen(
     modifier: Modifier = Modifier,
     onTappedClose: () -> Unit = {},
-
-    ) {
+    onTappedSave: (SavedCreatedClassroom) -> Unit = {},
+) {
     var selectedCategory by rememberSaveable { mutableStateOf("") }
 
     var level by rememberSaveable { mutableStateOf("") }
 
-    val isCollegeSelected by derivedStateOf {
-        selectedCategory == SelectionCategory.COLLEGE.value
-    }
+    var courseName by rememberSaveable { mutableStateOf("") }
+
+    val isCollegeSelected by derivedStateOf { selectedCategory == SelectionCategory.COLLEGE.value }
+
     BuildCreateClassroomScreen {
         Container(modifier = modifier) {
             AppBar(onTappedClose = onTappedClose)
             MainContent(modifier = Modifier.padding(16.dp)) {
                 CategoryDropdownField(onCategorySelected = { selectedCategory = it })
-                CourseNameField(isVisible = isCollegeSelected)
-                YearLevelField(
-                    value = level,
-                    onValueChanged = {
-                        if (it.isDigitsOnly() && it.length <= 2)
-                            level = it
-                    }
-                )
+                CourseNameField(isVisible = isCollegeSelected,
+                    value = courseName,
+                    onValueChanged = { courseName = it })
+                YearLevelField(value = level, onValueChanged = {
+                    if (it.isDigitsOnly() && it.length <= 2) level = it
+                })
                 FillUpSpace()
-                SaveButton()
+                SaveButton(onTappedSave = {
+                    onTappedSave(
+                        SavedCreatedClassroom(
+                            category = selectedCategory,
+                            level = level.toByte(),
+                            courseName = courseName
+                        )
+                    )
+                })
             }
         }
     }
