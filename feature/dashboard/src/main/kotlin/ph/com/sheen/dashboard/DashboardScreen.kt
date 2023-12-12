@@ -59,7 +59,6 @@ fun DashboardScreen(
                 CreateClassroomDialog(
                     onDismissRequest = { openCreateClassroomDialog = false },
                     onTappedSave = {
-                        Log.d("Sheen", it.toString())
                         openCreateClassroomDialog = false
                     }
                 )

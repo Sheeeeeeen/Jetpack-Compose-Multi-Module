@@ -63,6 +63,13 @@ fun CreateClassroomScreen(
                 })
                 FillUpSpace()
                 SaveButton(onTappedSave = {
+                    val isFormCompleted = if (selectedCategory == SelectionCategory.COLLEGE.value) {
+                        courseName.isNotBlank() && level.isNotBlank()
+                    } else {
+                        level.isNotBlank()
+                    }
+                    if (isFormCompleted.not())
+                        return@SaveButton
                     onTappedSave(
                         SavedCreatedClassroom(
                             category = selectedCategory,
