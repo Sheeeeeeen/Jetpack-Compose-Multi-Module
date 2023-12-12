@@ -51,9 +51,9 @@ class CreateClassroomComponent {
     fun AppBar(
         modifier: Modifier = Modifier,
         onTappedClose: () -> Unit = {},
-        onTappedSave: () -> Unit = {},
     ) {
-        TopAppBar(modifier = modifier,
+        TopAppBar(
+            modifier = modifier,
             title = { Text(text = stringResource(R.string.create_new_classroom)) },
             navigationIcon = {
                 IconButton(
@@ -65,15 +65,8 @@ class CreateClassroomComponent {
                         contentDescription = stringResource(R.string.close_button_description)
                     )
                 }
-            },
-            actions = {
-                TextButton(
-                    modifier = Modifier.testTag(tag = stringResource(R.string.save_button_test_tag)),
-                    onClick = onTappedSave
-                ) {
-                    Text(text = stringResource(R.string.save_button_title))
-                }
-            })
+            }
+        )
     }
 
     @Composable
