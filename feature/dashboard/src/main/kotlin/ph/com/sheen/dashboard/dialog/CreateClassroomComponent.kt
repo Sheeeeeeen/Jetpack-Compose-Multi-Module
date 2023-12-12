@@ -75,7 +75,7 @@ class CreateClassroomComponent {
     }
 
     @Composable
-    fun CategoryField(
+    fun CategoryDropdownField(
         modifier: Modifier = Modifier,
         onValueChanged: (String) -> Unit = {},
         value: String = "",

@@ -28,7 +28,7 @@ fun CreateClassroomScreen(modifier: Modifier = Modifier, onTappedClose: () -> Un
         Container(modifier = modifier) {
             AppBar(onTappedClose = onTappedClose)
             MainContent(modifier = Modifier.padding(16.dp)) {
-                CategoryField()
+                CategoryDropdownField()
                 CourseNameField()
                 YearLevelField()
                 FillUpSpace()
