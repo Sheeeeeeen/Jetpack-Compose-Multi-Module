@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -18,9 +19,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -46,9 +46,16 @@ fun BuildCreateClassroomScreen(
 class CreateClassroomComponent {
 
     @Composable
-    fun Container(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
-        Surface(modifier = modifier) {
-            Column(modifier = Modifier.fillMaxSize()) {
+    fun Container(
+        modifier: Modifier = Modifier,
+        topBar: @Composable () -> Unit,
+        content: @Composable ColumnScope.() -> Unit,
+    ) {
+        Scaffold(
+            modifier = modifier,
+            topBar = topBar
+        ) {
+            Column(modifier = Modifier.fillMaxSize().padding(it)) {
                 content()
             }
         }
@@ -59,8 +66,7 @@ class CreateClassroomComponent {
         modifier: Modifier = Modifier,
         onTappedClose: () -> Unit = {},
     ) {
-        TopAppBar(
-            modifier = modifier,
+        TopAppBar(modifier = modifier,
             title = { Text(text = stringResource(R.string.create_new_classroom)) },
             navigationIcon = {
                 IconButton(
@@ -72,8 +78,7 @@ class CreateClassroomComponent {
                         contentDescription = stringResource(R.string.close_button_description)
                     )
                 }
-            }
-        )
+            })
     }
 
     @Composable
@@ -92,8 +97,7 @@ class CreateClassroomComponent {
 
         var expanded by rememberSaveable { mutableStateOf(false) }
 
-        CategoryDropdownScreen(
-            modifier = modifier.testTag("category_dropdown_menu_field_tag"),
+        CategoryDropdownScreen(modifier = modifier.testTag("category_dropdown_menu_field_tag"),
             value = selectedCategory,
             items = categoryItems,
             expanded = expanded,
@@ -102,8 +106,7 @@ class CreateClassroomComponent {
                 selectedCategory = it
                 onCategorySelected(it)
             },
-            onExpanded = { expanded = it }
-        )
+            onExpanded = { expanded = it })
     }
 
     @Composable

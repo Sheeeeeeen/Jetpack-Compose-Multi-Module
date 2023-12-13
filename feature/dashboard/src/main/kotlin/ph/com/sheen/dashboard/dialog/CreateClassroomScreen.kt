@@ -75,8 +75,13 @@ fun CreateClassroomScreen(
     }
 
     BuildCreateClassroomScreen {
-        Container(modifier = modifier) {
-            AppBar(onTappedClose = onTappedClose)
+        Container(
+            modifier = modifier,
+            topBar = {
+                AppBar(onTappedClose = onTappedClose)
+            }
+        ) {
+
             MainContent(modifier = Modifier.padding(16.dp)) {
                 CategoryDropdownField(onCategorySelected = { selectedCategory = it })
                 CourseNameField(isVisible = isCollegeSelected,
