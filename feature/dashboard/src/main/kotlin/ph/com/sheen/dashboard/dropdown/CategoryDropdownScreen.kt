@@ -12,6 +12,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import ph.com.sheen.designsystem.theme.ui.AppPreview
 
@@ -35,7 +36,7 @@ fun CategoryDropdownScreen(
         OutlinedTextField(
             value = value,
             onValueChange = {},
-            modifier = Modifier.fillMaxWidth().menuAnchor(),
+            modifier = Modifier.fillMaxWidth().menuAnchor().testTag("category_field_tag"),
             textStyle = MaterialTheme.typography.bodyLarge,
             label = label,
             singleLine = true,
