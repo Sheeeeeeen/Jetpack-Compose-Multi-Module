@@ -13,6 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -147,7 +148,7 @@ class CreateClassroomComponent {
 
     @Composable
     fun SaveButton(modifier: Modifier = Modifier, onTappedSave: () -> Unit = {}) {
-        TextButton(
+        FilledTonalButton(
             modifier = modifier.fillMaxWidth().testTag("text_save_button_tag"),
             onClick = onTappedSave
         ) {
