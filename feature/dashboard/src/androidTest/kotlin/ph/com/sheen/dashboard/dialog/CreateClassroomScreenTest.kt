@@ -4,6 +4,7 @@ package ph.com.sheen.dashboard.dialog
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -28,7 +29,7 @@ class CreateClassroomScreenTest {
 
         //main content
         composeTestRule.onNodeWithTag(testTag = "category_dropdown_menu_field_tag").assertIsDisplayed()
-        composeTestRule.onNodeWithTag(testTag = "course_name_field_tag").assertIsDisplayed()
+        composeTestRule.onNodeWithTag(testTag = "course_name_field_tag").assertIsNotDisplayed()
         composeTestRule.onNodeWithTag(testTag = "year_level_field_tag").assertIsDisplayed()
         composeTestRule.onNodeWithTag(testTag = "text_save_button_tag").assertIsDisplayed()
     }

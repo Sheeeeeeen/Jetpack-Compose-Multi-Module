@@ -84,12 +84,17 @@ fun CreateClassroomScreen(
 
             MainContent(modifier = Modifier.padding(16.dp)) {
                 CategoryDropdownField(onCategorySelected = { selectedCategory = it })
-                CourseNameField(isVisible = isCollegeSelected,
+                CourseNameField(
+                    isVisible = isCollegeSelected,
                     value = courseName,
-                    onValueChanged = { courseName = it })
-                YearLevelField(value = level, onValueChanged = {
-                    if (it.isDigitsOnly() && it.length <= 2) level = it
-                })
+                    onValueChanged = { courseName = it }
+                )
+                YearLevelField(
+                    value = level,
+                    onValueChanged = {
+                        if (it.isDigitsOnly() && it.length <= 2) level = it
+                    }
+                )
                 FillUpSpace()
                 SaveButton(onTappedSave = {
                     if (isFormCompleted.not()) {
